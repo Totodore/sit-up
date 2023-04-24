@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  api: "https://api-azdda.test.com",
+  api: "https://api-situp.dev.scriptis.fr",
   secured: true,
 };
