@@ -8,12 +8,52 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
+$primary-color: (
+ 50:  #FAEDCD,
+ 100: #FAEDCD,
+ 200: #FAEDCD,
+ 300: #FAEDCD,
+ 400: #FAEDCD,
+ 500:#FAEDCD,
+ 600: #FAEDCD,
+ 700: #FAEDCD,
+ 800: #FAEDCD,
+ 900: #FAEDCD,
+
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: white,
+   // ... continues to 900
+ )
+);
+$secondary-color: (
+ 50:  #CCD5AE,
+ 100: #CCD5AE,
+ 200: #CCD5AE,
+ 300: #CCD5AE,
+ 400: #CCD5AE,
+ 500:#CCD5AE,
+ 600: #CCD5AE,
+ 700: #CCD5AE,
+ 800: #CCD5AE,
+ 900: #CCD5AE,
+
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: white,
+   // ... continues to 900
+ )
+);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$sit-up-primary: mat.define-palette(mat.$indigo-palette);
-$sit-up-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$sit-up-primary: mat.define-palette($primary-color);
+$sit-up-accent: mat.define-palette($secondary-color);
 
 // The warn palette is optional (defaults to red).
 $sit-up-warn: mat.define-palette(mat.$red-palette);
