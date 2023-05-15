@@ -8,17 +8,23 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DateHttpInterceptor } from './interceptors/date.interceptor';
 import { HomeComponent } from './components/views/home/home.component';
 import { AuthComponent } from './components/views/auth/auth.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import {MatCardModule} from '@angular/material/card';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: DateHttpInterceptor }
