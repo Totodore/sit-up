@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: "auth", component: AuthComponent, canActivate: [() => !isLogged()],
   },
-  { path: "", component: HomeComponent, canActivate: [isLogged] }
+  { path: "", component: HomeComponent}
 ];
 
 @NgModule({

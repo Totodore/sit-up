@@ -1,3 +1,4 @@
+import {MatIconModule} from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -18,7 +19,8 @@ import { AuthComponent } from './components/views/auth/auth.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: DateHttpInterceptor }
