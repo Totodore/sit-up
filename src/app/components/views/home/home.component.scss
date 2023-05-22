@@ -1,1 +1,14 @@
 @import url('../../../../parent.scss');
+.card{
+    border-radius: 16px;
+    background: rgba(250, 237, 205, 0.4);
+}
+
+.title{
+    font-weight: bold;
+}
+
+.icon{
+    width: 51px;
+    height: 47px;
+}
