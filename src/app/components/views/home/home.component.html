@@ -1,13 +1,17 @@
-<body>
-    <div class="card">
-        <div class="title">Home Page</div>
-        <div style="">
-            <mat-icon aria-hidden="false" fontIcon="pets" class="icon"></mat-icon>
-            <div>Petsitting</div>
-        </div>
-        <mat-icon aria-hidden="false" fontIcon="local_florist" class="icon"></mat-icon>
-        <div>Plantsitting</div>
-
-        <mat-icon aria-hidden="false" fontIcon="cleaning_services" class="icon"></mat-icon>        
+<div class="card">
+    <div class="title">Home Page</div>
+    <div style="">
+        <mat-icon aria-hidden="false" fontIcon="pets" class="icon"></mat-icon>
+        <div>Petsitting</div>
     </div>
-</body>
+    <mat-icon aria-hidden="false" fontIcon="local_florist" class="icon"></mat-icon>
+    <div>Plantsitting</div>
+
+    <mat-icon aria-hidden="false" fontIcon="cleaning_services" class="icon"></mat-icon>
+
+    <div class="wrapper" *ngIf="announcements">
+        <div class="announcement" *ngFor="let announcement of announcements">
+            <span class="title">{{ announcement.address }}</span>
+        </div>
+    </div>
+</div>
