@@ -1,5 +1,22 @@
+.green-card {
+    max-width: 98vw;
+    max-height: 90vh;
+    display: flex;
+    margin: auto;
+    position: static;
+    background-color: #faedcd;
+}
+
+.mat-sort-header-container {
+    align-items: center;
+  }
+
+.card-icon {
+    max-width: 10px;
+}
+
 .example-card {
-    max-width: 17vw;
+    max-width: 15vw;
     max-height: 35vh;
   }
   
@@ -7,3 +24,8 @@
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: auto;
   }
+
+  .example-tab-icon {
+    margin-right: 8px;
+  }
+  

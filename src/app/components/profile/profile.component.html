@@ -1,6 +1,18 @@
-<mat-card>
+<mat-card class = "green-card">
     <mat-card-content>Simple card
-  
+        <mat-tab-group>
+  <mat-tab class>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">perm_identity</mat-icon>
+      Profile
+    </ng-template>
+    <p>Profile details</p>
+
+
+    <p>Preferences</p>
+
+
+    <p>Booking and Trips</p>
     <mat-card class="example-card">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
@@ -9,5 +21,18 @@
         </mat-card-header>
         <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
     </mat-card>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">settings</mat-icon>
+      Settings
+    </ng-template>
+    Content 2
+  </mat-tab>
+</mat-tab-group>
+
+  
+    
     </mat-card-content>
 </mat-card>
