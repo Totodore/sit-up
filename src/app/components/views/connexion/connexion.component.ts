@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-connexion',
@@ -17,7 +18,8 @@ export class ConnexionComponent {
 
   constructor(
     private readonly api: ApiService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly snackbar: SnackbarService,
   ) { }
 
   async login() {
@@ -26,9 +28,9 @@ export class ConnexionComponent {
     });
 
     if (ok) {
-      this.router.navigateByUrl("test");
+      this.router.navigateByUrl("home");
     } else {
-      alert('Identifiants incorrects. Veuillez réessayer.');
+      this.snackbar.snack('Identifiants incorrects. Veuillez réessayer.');
     }
   }
 
@@ -37,7 +39,7 @@ export class ConnexionComponent {
   }
 
   forgotPassword() {
-    alert('Mot de passe oublié');
+    this.snackbar.snack('Mot de passe oublié');
   }
 }
 
