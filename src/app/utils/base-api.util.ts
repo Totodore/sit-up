@@ -15,7 +15,7 @@ export class BaseApi {
   public async login(body: UserLoginReq): Promise<boolean> {
     try {
       const res = await lastValueFrom(this.http.post<UserLoginRes>(`${this.root}/auth/login`, body));
-      localStorage.setItem("jwt", res.token);
+      localStorage.setItem("jwt", "Bearer " + res.token);
       return true;
     } catch (error) {
       console.error(error);
