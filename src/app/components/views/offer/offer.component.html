@@ -1,0 +1,95 @@
+<mat-card onload="changeIcon()" id="card1" >
+  <div id="icons">
+    <mat-icon  class="{{classPets}}" >pets</mat-icon>
+
+      <mat-icon class="{{classPlant}}">local_florist</mat-icon>
+
+      <mat-icon class="{{classClean}}">cleaning_services</mat-icon>
+      <span class="spacer1"></span>
+      <button mat-icon-button >
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+    </div>
+
+    <mat-card id="card2"  >
+
+      <div id="whole">
+        <div id="header">
+          <button mat-icon-button (click)="lastPhoto()" >
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+
+          <img  mat-card-image src={{photo1.url}} alt="Photo of a Shiba Inu" width="130px" height="130px">
+
+          <button mat-icon-button (click)="nextPhoto()" >
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+
+          <mat-chip-listbox aria-label="chips">
+            <mat-chip   *ngFor="let tags of Tags" selected color="accent">
+              {{tags.name}}
+            </mat-chip>
+
+
+          </mat-chip-listbox>
+        </div>
+
+        <div id="owner">
+          <img id="profile_pic" mat-card-image src={{photoOwner}} alt="Photo of a Shiba Inu" width="50px" height="50px">
+          <h2>{{ownerName}}</h2>
+          <p> {{ownerDetails}}</p>
+        </div>
+
+        <div id="description" *ngIf="announcement">
+          <p>
+            {{text}}
+          </p>
+        </div>
+
+        <div id="condition">
+          <h2>
+            condition
+          </h2>
+          <p>{{condition}}</p>
+        </div>
+
+        <div id="photo">
+          <img mat-card-image *ngFor="let photo of Photo" src={{photo.url}} alt="Photo of a Shiba Inu" width="80px" height="80px">
+
+          </div>
+
+        <div id="contact">
+          <h2>Contact</h2>
+          <mat-form-field class="example-form-field">
+            <button *ngIf="value" matSuffix mat-icon-button  (click)="value=''">
+              <mat-icon>send</mat-icon>
+            </button>
+
+            <input  matInput type="text" [(ngModel)]="value">
+
+          </mat-form-field>
+        </div>
+
+      </div>
+
+
+    </mat-card>
+
+
+
+  <div id="icons2">
+      <button mat-icon-button>
+        <mat-icon>filter_list</mat-icon>
+      </button>
+      <button mat-icon-button >
+        <mat-icon>bookmark_border</mat-icon>
+      </button>
+      <span class="spacer2"></span>
+      <button mat-icon-button >
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+      </div>
+
+</mat-card>
+
+

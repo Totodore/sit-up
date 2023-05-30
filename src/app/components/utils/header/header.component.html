@@ -1,45 +1,24 @@
-<body>
-  <!--<mat-toolbar color="primary">
-    logo-->
 
-    <!--search bar--
-    <mat-form-field appearance="fill">
-      <mat-label>Input</mat-label>
+
+  <mat-toolbar class="header" color="accent">
+
+    <span><a href="/home"><img src="../../../../assets/photo/sit-up-logo.jpg" width="135px" height="65px"/></a></span>
+
+    <mat-form-field class="search" appearance="fill" color="accent" >
+      <mat-icon>search</mat-icon>
       <input matInput>
     </mat-form-field>
-    <span class="example-spacer"></span>
-    <!--button--
 
-    <button mat-icon-button color="accent" aria-label="Example icon button with a open in new tab icon">
-      <mat-icon>message</mat-icon>
-    </button>
-    <button mat-icon-button color="accent" aria-label="Example icon button with a open in new tab icon">
-      <mat-icon>perm_identity</mat-icon>
-    </button>
-    <button mat-icon-button color="accent" aria-label="Example icon button with a open in new tab icon">
-      <mat-icon>settings</mat-icon>
-    </button>
-
-  </mat-toolbar>-->
-  <mat-toolbar color="primary">
-
-    <span>Sit-up</span>
-
-    <mat-form-field class="search" appearance="fill">
-      <mat-label>Input</mat-label>
-      <input matInput>
-    </mat-form-field>
     <span class="spacer"></span>
-    <button mat-icon-button color="accent" aria-label="Example icon button with a open in new tab icon">
+    <a mat-icon-button href="message" aria-label="message button">
       <mat-icon>message</mat-icon>
-    </button>
-    <button mat-icon-button color="accent" aria-label="Example icon button with a open in new tab icon">
+    </a>
+    <a mat-icon-button href="account"  aria-label="account button">
       <mat-icon>perm_identity</mat-icon>
-    </button>
-    <button mat-icon-button color="accent" aria-label="Example icon button with a open in new tab icon">
+    </a>
+    <a mat-icon-button href="settings"  aria-label="settings button">
       <mat-icon>settings</mat-icon>
-    </button>
+    </a>
   </mat-toolbar>
 
 
-</body>

@@ -15,12 +15,32 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
+import { OfferComponent } from './components/views/offer/offer.component';
+import {MatDivider, MatDividerModule} from '@angular/material/divider'
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import {HttpClientModule} from '@angular/common/http';
+
+
+import { RequestComponent } from './components/views/request/request.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSliderModule} from '@angular/material/slider';
+import { NgImageSliderModule } from 'ng-image-slider';
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    OfferComponent,
+
+    RequestComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +52,21 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatInputModule
+    MatInputModule,
+    MatDividerModule,
+    MatCardModule,
+    MatGridListModule,
+    MatChipsModule,
+    MatNativeDateModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatCheckboxModule,
+    MatButtonToggleModule,
+    MatSliderModule,
+    NgImageSliderModule
+
 
   ],
   providers: [
