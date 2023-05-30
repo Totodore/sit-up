@@ -26,7 +26,7 @@ export class ConnexionComponent {
     });
 
     if (ok) {
-      this.router.navigateByUrl("test");
+      this.router.navigateByUrl("");
     } else {
       alert('Identifiants incorrects. Veuillez réessayer.');
     }

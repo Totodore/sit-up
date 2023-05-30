@@ -15,7 +15,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
     AuthComponent,
     HomeComponent,
     ConnexionComponent,
+    InscriptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
     HttpClientModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatSnackBarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: DateHttpInterceptor }
