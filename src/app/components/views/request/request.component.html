@@ -1,0 +1,137 @@
+<mat-card id="card1" >
+  <div id="title">
+    My Offer
+  </div>
+  <div id="body">
+
+    <mat-card id="card2"  >
+
+      <div id="date">
+        <mat-label>Date:</mat-label>
+        <mat-form-field >
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Start date">
+            <input matEndDate placeholder="End date">
+          </mat-date-range-input>
+
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+
+
+      <div id="service">
+        <mat-label>Services needed:</mat-label>
+        <mat-button-toggle-group name="ingredients" aria-label="Ingredients" multiple>
+          <mat-button-toggle value="flour">
+            <mat-icon>pets</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="eggs">
+            <mat-icon>local_florist</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="sugar">
+            <mat-icon>cleaning_services</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <mat-label>location:</mat-label>
+      <div id="location">
+
+        <mat-form-field>
+          <mat-label>Adress</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Postal Code</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+
+      <mat-label>Number of:</mat-label>
+      <div id="number">
+      <div class="number">
+        <mat-label>rooms</mat-label>
+        <label class="rooms">{{value_rooms}}</label>
+        <mat-slider class="rooms_slider"
+
+        [max]="20"
+        [min]="1"
+        [step]="1">
+          <input matSliderThumb [(ngModel)]="value_rooms">
+        </mat-slider>
+
+      </div>
+      <div class="number">
+        <mat-label>guests</mat-label>
+        <label class="example-value-label">{{value_guests_min}}</label>
+        <label>-</label>
+        <label class="example-value-label">{{value_guests_max}}</label>
+        <mat-slider class="example-margin"
+
+        [max]="20"
+        [min]="1"
+        [step]="1">
+
+          <input value="1" matSliderStartThumb [(ngModel)]="value_guests_min">
+          <input value="10" matSliderEndThumb [(ngModel)]="value_guests_max">
+        </mat-slider>
+
+      </div>
+      <div class="number">
+        <mat-label>m²</mat-label>
+        <label class="example-value-label">{{value_square}}</label>
+        <mat-slider class="example-margin"
+
+        [max]="400"
+        [min]="10"
+        [step]="5">
+          <input matSliderThumb [(ngModel)]="value_square">
+
+        </mat-slider>
+
+      </div>
+    </div>
+
+    </mat-card>
+    <div id="right">
+      <mat-card id="card3">
+        <mat-label>Constraints:</mat-label>
+        <mat-form-field class="example-full-width">
+
+          <textarea matInput placeholder="Ex. no kids, no other pets..."></textarea>
+        </mat-form-field>
+
+      </mat-card>
+      <mat-card id="card4">
+        <mat-label>Description:</mat-label>
+        <mat-form-field class="example-full-width">
+
+          <textarea matInput></textarea>
+        </mat-form-field>
+      </mat-card>
+      <mat-card id="card5">
+        <mat-label>Photo:</mat-label>
+        <input matImput type="file" accept="image/*" name='files[]' multiple>
+      </mat-card>
+    </div>
+    <div id="submit">
+
+      <button (click)="addAnnouncement()" mat-icon-button>
+        <mat-icon>send</mat-icon>
+      </button>
+
+    </div>
+  </div>
+
+
+
+</mat-card>
+
+
+
