@@ -5,6 +5,7 @@ import { ConnexionComponent } from './components/views/connexion/connexion.compo
 import { InscriptionComponent } from './components/views/inscription/inscription.component';
 import { OfferComponent } from './components/views/offer/offer.component';
 import { RequestComponent } from './components/views/request/request.component';
+import { AdminComponent } from './components/views/admin/admin.component';
 
 const isLogged = () => {
   if (!localStorage.getItem("jwt")) {
@@ -15,13 +16,24 @@ const isLogged = () => {
   }
 };
 
+
+const isLoggedAdmin = () => {
+  if (localStorage.getItem("role") !== "admin") {
+    inject(Router).navigate(["/"]);
+    return false;
+  } else {
+    return true;
+  }
+};
+
 const routes: Routes = [
   { path: "auth", component: ConnexionComponent },
   { path: "", component: HomeComponent, canActivate: [isLogged] },
-  { path: "connexion", component: ConnexionComponent },
-  { path: "inscription", component: InscriptionComponent },
-  { path: 'offer', component: OfferComponent },
-  { path: 'request', component: RequestComponent },
+  { path: "connexion", component: ConnexionComponent, canActivate: [isLogged] },
+  { path: "inscription", component: InscriptionComponent, canActivate: [isLogged] },
+  { path: 'offer', component: OfferComponent, canActivate: [isLogged] },
+  { path: 'request', component: RequestComponent, canActivate: [isLogged] },
+  { path: 'admin', component: AdminComponent, canActivate: [isLoggedAdmin] },
 ];
 
 @NgModule({

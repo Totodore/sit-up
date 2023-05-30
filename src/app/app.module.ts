@@ -30,6 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RequestComponent } from './components/views/request/request.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSliderModule } from '@angular/material/slider';
+import { AdminComponent } from './components/views/admin/admin.component';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,9 +43,11 @@ import { MatSliderModule } from '@angular/material/slider';
     HomeComponent,
     ConnexionComponent,
     InscriptionComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
