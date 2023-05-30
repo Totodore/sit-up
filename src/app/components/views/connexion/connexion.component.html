@@ -1,0 +1,27 @@
+<main>
+    <div id="head">
+        <h1>Sit-up</h1>
+        <mat-icon>pets</mat-icon>
+        <mat-icon>local_florist</mat-icon>
+        <mat-icon>home</mat-icon>
+    </div>
+    <div id="body">
+        <h2>Connexion</h2>
+        <mat-form-field appearance="outline" color="accent">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="email" placeholder="Alina" color="accent">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field> <br>
+        <mat-form-field appearance="outline" color="accent">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [(ngModel)]="password" [type]="hide ? 'password' : 'text'" placeholder="Starkov">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-hint><a href="#">Forgot your Password?</a></mat-hint><br>
+        </mat-form-field> <br>
+        <button mat-raised-button color="primary" (click)="inscriptionPage()">Create Account</button>
+        <button mat-raised-button color="primary" (click)="login()">Submit</button>
+    </div>
+</main>

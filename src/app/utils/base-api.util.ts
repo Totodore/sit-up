@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { lastValueFrom } from "rxjs";
-import { UserLoginReq, UserModel } from "../models/user.model";
+import { UserLoginReq, UserLoginRes, UserModel, UserRegisterReq } from "../models/user.model";
 
 export class BaseApi {
 
@@ -14,8 +14,8 @@ export class BaseApi {
 
   public async login(body: UserLoginReq): Promise<boolean> {
     try {
-      const res = await lastValueFrom(this.http.post(`${this.root}/user/auth`, body, { responseType: "text" }));
-      localStorage.setItem("jwt", res);
+      const res = await lastValueFrom(this.http.post<UserLoginRes>(`${this.root}/auth/login`, body));
+      localStorage.setItem("jwt", "Bearer " + res.token);
       return true;
     } catch (error) {
       console.error(error);
@@ -23,10 +23,10 @@ export class BaseApi {
     }
   }
 
-  public async register(body: UserLoginReq): Promise<boolean> {
+  public async register(body: UserRegisterReq): Promise<boolean> {
     try {
-      const res = await lastValueFrom(this.http.post(`${this.root}/user/register`, body, { responseType: "text" }));
-      localStorage.setItem("jwt", res);
+      const res = await lastValueFrom(this.http.post<UserLoginRes>(`${this.root}/auth/register`, body));
+      localStorage.setItem("jwt", res.token);
       return true;
     } catch (err) {
       console.error(err);
