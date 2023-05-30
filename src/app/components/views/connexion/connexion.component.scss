@@ -1,0 +1,25 @@
+main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#head {
+    background-color: #CCD5AE;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-bottom: 2%;
+}
+
+#body {
+    background-color: rgba($color: #FAEDCD, $alpha: 0.4);
+    border-radius: 16px;
+    text-align: center;
+    padding: 2%;
+}
+
+mat-icon {
+    padding-right: 1%;
+}
