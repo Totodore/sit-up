@@ -32,5 +32,4 @@ export interface UserRegisterReq {
   firstname: string;
   email: string;
   password: string;
-  birthdate: Date;
 }
