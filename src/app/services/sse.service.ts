@@ -28,6 +28,8 @@ export class SseService {
   }
 
   private getEventSource(url: string, token: string): EventSource {
-    return new EventSource(`${environment.api}/${url}?token=${token}`);
+    return new EventSource(`http://${environment.api}/${url}?token=${token}`, {
+      authorizationHeader: `Bearer ${token}`,
+    } as any);
   }
 }

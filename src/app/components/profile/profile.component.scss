@@ -1,31 +1,57 @@
 .green-card {
-    max-width: 98vw;
-    max-height: 90vh;
-    display: flex;
-    margin: auto;
-    position: static;
-    background-color: #faedcd;
+  width: 98vw;
+  height: 87vh;
+  display: flex;
+  margin: auto;
+  position: static;
+  background-color: #faedcd;
+}
+
+mat-tab-group ::ng-deep .mat-mdc-tab-body-wrapper {
+  height: 100%;
+}
+.profile-card {
+  margin: 2%;
+  height: 100%;
+  margin-bottom: 0%;
 }
 
 .mat-sort-header-container {
-    align-items: center;
-  }
+  align-items: center;
+}
 
 .card-icon {
-    max-width: 10px;
+  max-width: 10px;
 }
 
 .example-card {
-    max-width: 15vw;
-    max-height: 35vh;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: auto;
-  }
+  width: 15vw;
+  height: 15vh;
+  min-width: 160px;
+  min-height: 160px;
+}
 
-  .example-tab-icon {
-    margin-right: 8px;
-  }
-  
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: auto;
+}
+
+.example-tab-icon {
+  margin-right: 8px;
+}
+
+.left-wrapper {
+  width: 100%;
+}
+.messages {
+  background-color: white;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 15px;
+  width: 100%;
+}

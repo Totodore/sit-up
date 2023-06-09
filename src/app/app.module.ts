@@ -31,6 +31,11 @@ import { MatIconModule } from "@angular/material/icon";
 import { ProfileComponent } from './components/profile/profile.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from "@angular/material/input";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ChatComponent } from './components/profile/chat/chat.component';
+import { ConversationComponent } from './components/profile/chat/conversation/conversation.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +47,8 @@ import { MatInputModule } from "@angular/material/input";
     HomeComponent,
     ConnexionComponent,
     ProfileComponent,
+    ChatComponent,
+    ConversationComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +82,8 @@ import { MatInputModule } from "@angular/material/input";
     MatButtonModule,
     HttpClientModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatSlideToggleModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: DateHttpInterceptor }

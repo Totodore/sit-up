@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: "auth", component: ConnexionComponent },
   { path: "", component: HomeComponent, canActivate: [isLogged] },
   { path: "profile", component: ProfileComponent  },
+  { path: "message", component: ProfileComponent  },
   { path: 'offer', component: OfferComponent },
   { path: 'request', component: RequestComponent },
 ];
