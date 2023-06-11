@@ -1,0 +1,56 @@
+<mat-card class="green-card">
+    <mat-tab-group class="profile-card">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">perm_identity</mat-icon>
+                Profile
+            </ng-template>
+            <div class="wrapper">
+
+                <div class="left-wrapper">
+                    <p>Profile details</p>
+                    <p *ngIf="user">First Name : {{ user.firstname }}</p>
+                    <p *ngIf="user">Name : {{ user.name }}</p>
+                    <p *ngIf="user">Adress email : {{ user.email }}</p>
+                    <p *ngIf="user">Password : xxxxx</p>
+
+                    <p>Preferences </p>
+
+
+
+                    <p>Booking and Trips</p>
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                            <div mat-card-avatar class="example-header-image"></div>
+                            <mat-card-title>Location</mat-card-title>
+                            <mat-card-subtitle>Dates</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                            alt="Photo of a Shiba Inu">
+                    </mat-card>
+                </div>
+
+                <app-chat *ngIf="isMessage" class="messages">
+                </app-chat>
+            </div>
+
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">settings</mat-icon>
+                Settings
+            </ng-template>
+            <p>Slide Toggle inside of a Template-driven form</p>
+            <!-- 
+            <form class="example-form" #form="ngForm" (ngSubmit)="alertFormValues(form.form)">
+
+                 <mat-slide-toggle ngModel name="enableWifi">Enable Wifi</mat-slide-toggle>
+                 <mat-slide-toggle ngModel name="acceptTerms" required>Accept Terms of Service</mat-slide-toggle>
+
+                 <button mat-raised-button type="submit">Save Settings</button>
+            </form> -->
+        </mat-tab>
+    </mat-tab-group>
+
+</mat-card>

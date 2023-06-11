@@ -1,0 +1,13 @@
+<div class="messages">
+    <div class="message" *ngFor="let message of latestMessages">
+        {{ message.sender.name }}
+        <div style="width: 100%; margin-top: 20px; margin-bottom: 20px;"></div>
+        <app-conversation [otherPerson]="message.sender">
+
+        </app-conversation>
+    </div>
+</div>
+<!-- Mettre app-conversation dans le contenu de expansion tile avec le senderId en paramètre -->
+<!-- <app-conversation [otherPerson]="message.sender">
+    
+</app-conversation> -->
