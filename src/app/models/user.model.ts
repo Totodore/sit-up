@@ -32,4 +32,5 @@ export interface UserRegisterReq {
   firstname: string;
   email: string;
   password: string;
+  preferences: boolean[];
 }

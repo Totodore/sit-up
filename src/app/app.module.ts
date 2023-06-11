@@ -30,6 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RequestComponent } from './components/views/request/request.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatTreeModule } from '@angular/material/tree';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,14 +68,8 @@ import { MatSliderModule } from '@angular/material/slider';
     MatButtonToggleModule,
     MatSliderModule,
 
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
     MatSnackBarModule,
+    MatTreeModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: DateHttpInterceptor }
