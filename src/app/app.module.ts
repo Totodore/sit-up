@@ -33,6 +33,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ChatComponent } from './components/profile/chat/chat.component';
+import { ConversationComponent } from './components/profile/chat/conversation/conversation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +47,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ConnexionComponent,
     InscriptionComponent,
     ProfileComponent,
+    ChatComponent,
+    ConversationComponent,
   ],
   imports: [
     BrowserModule,
