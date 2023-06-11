@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,10 +24,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { InscriptionComponent } from './components/views/inscription/inscription.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RequestComponent } from './components/views/request/request.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ProfileComponent } from './components/profile/profile.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,39 +42,34 @@ import { MatSliderModule } from '@angular/material/slider';
     HomeComponent,
     ConnexionComponent,
     InscriptionComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatAutocompleteModule,
+    MatInputModule,
     MatFormFieldModule,
     MatAutocompleteModule,
-    MatButtonModule,
-    MatIconModule,
+    MatTabsModule,
     MatToolbarModule,
-    MatInputModule,
     MatDividerModule,
-    MatCardModule,
     MatGridListModule,
     MatChipsModule,
-    MatNativeDateModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
     MatCheckboxModule,
     MatButtonToggleModule,
     MatSliderModule,
-
+    MatCardModule,
     MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
     MatButtonModule,
     HttpClientModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatSnackBarModule,
+    MatIconModule,
+    MatSlideToggleModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: DateHttpInterceptor }

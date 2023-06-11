@@ -1,0 +1,11 @@
+<div class="messages">
+    <div class="message" [class.right]="message.sender.id != otherPerson?.id" *ngFor="let message of messages">
+        {{ message.message }}
+    </div>
+</div>
+
+<mat-form-field>
+    <mat-label>Message</mat-label>
+    <input type="text" matInput [(ngModel)]="messageContent">
+</mat-form-field>
+<button mat-icon-button (click)="sendMessage()"><mat-icon>send</mat-icon></button>
