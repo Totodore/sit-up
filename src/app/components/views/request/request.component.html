@@ -21,18 +21,35 @@
 
       <div id="service">
         <mat-label>Services needed:</mat-label>
-        <mat-button-toggle-group name="ingredients" aria-label="Ingredients" multiple>
-          <mat-button-toggle value="flour">
+        <span class="example-list-section">
+          <ul>
+            <li >
+              <mat-checkbox color="primary" value="checkbox" [formControlName]="'pet_sitting'">
+                <mat-icon>pets</mat-icon>
+              </mat-checkbox>
+              <mat-checkbox color="primary" value="checkbox" [formControlName]="'plant_sitting'">
+                <mat-icon>local_florist</mat-icon>
+              </mat-checkbox>
+              <mat-checkbox color="primary" value="checkbox" [formControlName]="'home_sitting'">
+                <mat-icon>cleaning_services</mat-icon>
+              </mat-checkbox>
+            </li>
+          </ul>
+        </span>
+
+        <!--<mat-button-toggle-group name="ingredients" aria-label="Ingredients" multiple [formControlName]="'control'">
+          <mat-button-toggle value="pet_sitting" >
             <mat-icon>pets</mat-icon>
           </mat-button-toggle>
-          <mat-button-toggle value="eggs">
+          <mat-button-toggle value="plant_sitting" >
             <mat-icon>local_florist</mat-icon>
           </mat-button-toggle>
-          <mat-button-toggle value="sugar">
+          <mat-button-toggle value="home_sitting" >
             <mat-icon>cleaning_services</mat-icon>
           </mat-button-toggle>
-        </mat-button-toggle-group>
+        </mat-button-toggle-group>-->
       </div>
+
 
       <mat-label>location:</mat-label>
       <div id="location">
@@ -105,7 +122,15 @@
         </mat-slider>
 
       </div>
+
     </div>
+
+      <mat-label>Description:</mat-label>
+      <mat-form-field class="example-full-width">
+
+        <textarea matInput [formControlName]="'description'"></textarea>
+      </mat-form-field>
+
 
     </mat-card>
     <div id="right">
@@ -113,7 +138,7 @@
         <span class="example-list-section">
           <ul>
             <li *ngFor="let tag of Tags">
-              <mat-checkbox color="primary">
+              <mat-checkbox color="primary" value="checkbox" [formControlName]="tag.name">
                 {{tag.name}}
               </mat-checkbox>
             </li>
@@ -121,13 +146,7 @@
         </span>
 
       </mat-card>
-      <mat-card id="card4">
-        <mat-label>Description:</mat-label>
-        <mat-form-field class="example-full-width">
 
-          <textarea matInput [formControlName]="'description'"></textarea>
-        </mat-form-field>
-      </mat-card>
       <mat-card id="card5">
         <mat-label>Photo:</mat-label>
         <input matImput type="file" accept="image/*" name='files[]' multiple>

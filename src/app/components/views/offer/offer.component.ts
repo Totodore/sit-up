@@ -81,7 +81,7 @@ export class OfferComponent {
     }
     this.photo1=this.Photo[this.i]
   }
-  id=25
+  id=62
   lastID(){
     this.id = this.id- 1
     this.getAnnouncement();
