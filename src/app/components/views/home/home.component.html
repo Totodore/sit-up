@@ -20,12 +20,44 @@
            
             <div class="cardicon-right">
                 <mat-icon aria-hidden="false" fontIcon="bookmark_border"></mat-icon>
-                <mat-icon aria-hidden="false" fontIcon="filter_list"></mat-icon>
+                <mat-icon aria-hidden="false" fontIcon="filter_list" (click)="changeDisplayFiltre()"></mat-icon>
     
             </div>
         </div>
         
     </div>
+    
+    <div class="filtre" *ngIf="displayFiltre">filtreNumberPeopleMax
+      <form (ngSubmit)="submitForm()" #myForm="ngForm">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" [(ngModel)]="filtreCity" required>
+      
+        <label for="postalcode">Postal Code:</label>
+        <input type="number" id="postalcode" name="postalcode" [(ngModel)]="filtrePostalcode" required>
+      
+        <label for="numberOfBeds">Number of Beds:</label>
+        <input type="number" id="numberOfBeds" name="numberOfBeds" [(ngModel)]="filtreNumberOfBeds" required>
+      
+        <label for="squareMeters">Square Meters:</label>
+        <input type="number" id="squareMeters" name="squareMeters" [(ngModel)]="filtreSquareMeters" required>
+      
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" [(ngModel)]="filtreStartDate" required>
+      
+        <label for="stopDate">Stop Date:</label>
+        <input type="date" id="stopDate" name="stopDate" [(ngModel)]="filtreStopDate" required>
+      
+        <label for="numberPeopleMax">Max Number of People:</label>
+        <input type="number" id="numberPeopleMax" name="numberPeopleMax" [(ngModel)]="filtreNumberPeopleMax" required>
+      
+        <label for="numberOfRooms">Number of Rooms:</label>
+        <input type="number" id="numberOfRooms" name="numberOfRooms" [(ngModel)]="filtreNumberOfRooms" required>
+      
+        <button type="submit" [disabled]="!myForm.form.valid">Submit</button>
+      </form>
+      
+    </div>
+
     
     <div class="container">
     <button mat-icon-button (click)="decrementDisplayAnnounces()"[disabled]="this.buttonDecrementDisabled">

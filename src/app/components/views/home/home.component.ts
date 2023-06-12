@@ -12,10 +12,25 @@ export class HomeComponent implements OnInit {
 
   public announcements: AnnouncementModel[] = [];
   public displayAnnouncements: AnnouncementModel[] = [];
+  public announcementFilter: AnnouncementModel[] = [];
+
   public firstAnnounceToDisplay: number = 0;
   public buttonIncrementDisabled: boolean = false;
   public buttonDecrementDisabled: boolean = true;
   public numberOfAnnoucementsDisplay: number = 5;
+  public displayFiltre: boolean = false; 
+
+
+  public filtreCity?: string;
+  public filtrePostalcode?: number;
+  public filtreNumberOfBeds?: number;
+  public filtreSquareMeters?: number;
+  public filtreStartDate?: Date;
+  public filtreStopDate?: Date;
+  public filtreNumberPeopleMax?: number;
+  public filtreNumberOfRooms?: number;
+
+
   constructor(
     private readonly _api: ApiService,
     private readonly _snackbar: SnackbarService
@@ -27,6 +42,17 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  filtreAnnounces(){
+
+  }
+
+  submitForm(){
+    
+  }
+
+  changeDisplayFiltre(){
+    this.displayFiltre = !this.displayFiltre;
+  }
 
   displayAnnounces() {
     this.displayAnnouncements = this.announcements.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay+5); // Afficher les éléments 2 à 5
@@ -60,7 +86,7 @@ export class HomeComponent implements OnInit {
 
   public async getAllAnnouncement() {
     try {
-      this.announcements = await this._api.get("announcement/home");
+      this.announcements = await this._api.get("announcement/all");
       //console.log(this.announcements);
     } catch (e) {
       console.error(e);
@@ -80,7 +106,10 @@ export class HomeComponent implements OnInit {
       stopDate: new Date("2023-06-30"),
       numberPeopleMax: 4,
       numberOfRooms: 3,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME="
+      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
+      petSitting: true,
+      plantSitting: true,
+      houseSitting: true,
     });
     
     this.announcements.push(
@@ -96,7 +125,10 @@ export class HomeComponent implements OnInit {
       stopDate: new Date("2023-07-31"),
       numberPeopleMax: 2,
       numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME="
+      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
+      petSitting: true,
+      plantSitting: true,
+      houseSitting: false,
     })
     this.announcements.push(
     {
@@ -111,7 +143,10 @@ export class HomeComponent implements OnInit {
       stopDate: new Date("2023-07-31"),
       numberPeopleMax: 2,
       numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME="
+      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
+      petSitting: true,
+      plantSitting: false,
+      houseSitting: true,
     })
     this.announcements.push(
     {
@@ -126,7 +161,10 @@ export class HomeComponent implements OnInit {
       stopDate: new Date("2023-07-31"),
       numberPeopleMax: 2,
       numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME="
+      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
+      petSitting: true,
+      plantSitting: false,
+      houseSitting: false,
     })
     this.announcements.push({
       id: 1,
@@ -140,7 +178,10 @@ export class HomeComponent implements OnInit {
       stopDate: new Date("2023-06-30"),
       numberPeopleMax: 4,
       numberOfRooms: 3,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME="
+      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
+      petSitting: false,
+      plantSitting: true,
+      houseSitting: true,
     });
     
     this.announcements.push(
@@ -156,7 +197,10 @@ export class HomeComponent implements OnInit {
       stopDate: new Date("2023-07-31"),
       numberPeopleMax: 2,
       numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME="
+      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
+      petSitting: false,
+      plantSitting: true,
+      houseSitting: false,
     })
     this.announcements.push(
     {
@@ -171,7 +215,10 @@ export class HomeComponent implements OnInit {
       stopDate: new Date("2023-07-31"),
       numberPeopleMax: 2,
       numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME="
+      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
+      petSitting: false,
+      plantSitting: false,
+      houseSitting: true,
     })
     this.announcements.push(
     {
@@ -186,7 +233,10 @@ export class HomeComponent implements OnInit {
       stopDate: new Date("2023-07-31"),
       numberPeopleMax: 2,
       numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME="
+      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
+      petSitting: false,
+      plantSitting: false,
+      houseSitting: false,
     })
   }
 }
