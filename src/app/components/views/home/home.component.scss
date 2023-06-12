@@ -1,14 +1,69 @@
-@import url('../../../../parent.scss');
+/* Style pour la carte contenant toute les infos*/
 .card{
     border-radius: 16px;
     background: rgba(250, 237, 205, 0.4);
+    position: absolute;
+    width: 100%;
 }
 
-.title{
+/* Bandeau dans lequel se trouve les differents icons*/
+.headband{
+    padding-top: 10px;
+    padding-left: 10%;
+    width: 100%;
+}
+
+/* Contenant des icons de gauche*/
+.cardicon-left{
+    float: left;
+    padding: 10px;
+    
+}
+
+.icon-left{
+    width: auto;
+    height: auto;
+    font-size: 40px;
+    margin-left: 25%;
+}
+
+/* Contenant des icons de droite*/
+.cardicon-right{
+    float: left;
+    padding-left: 60%;
+
+}
+
+.annoucement-container{
+    display: flex;
+}
+
+.announcement-card {
+    margin: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #E9EDC9;
+    position: relative;
+    width: 200px;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .announcement-card-image {
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    width: 100%; /* Assurez-vous que l'image occupe toute la largeur de la div */
+    height: auto; /* Permet à la hauteur de s'ajuster automatiquement en fonction du ratio de l'image */
+    display: block;
+  }
+
+
+  .announcement-information-title{
     font-weight: bold;
-}
-
-.icon{
-    width: 51px;
-    height: 47px;
-}
+  }
+  

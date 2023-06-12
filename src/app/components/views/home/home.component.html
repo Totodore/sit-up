@@ -1,18 +1,42 @@
 <div class="card">
-    pitié affiche toi   
-    <!-- <div class="title">Home Page</div>
-    <div>
-        <mat-icon aria-hidden="false" fontIcon="pets" class="icon"></mat-icon>
-        <div>Petsitting</div>
-    </div>
-    <mat-icon aria-hidden="false" fontIcon="local_florist" class="icon"></mat-icon>
-    <div>Plantsitting</div>
-
-    <mat-icon aria-hidden="false" fontIcon="cleaning_services" class="icon"></mat-icon>
-
-    <div class="wrapper" *ngIf="announcements">
-        <div class="announcement" *ngFor="let announcement of announcements">
-            <span class="title">{{ announcement.address }}</span>
+    <div class="headband">
+        <div style="width: 90%;">
+            <div style="width: 40%;">
+                <div class="cardicon-left">
+                    <mat-icon aria-hidden="false" fontIcon="pets" class="icon-left"></mat-icon>
+                    <div>Pet sitting</div>
+                </div>
+                <div class="cardicon-left">
+                    <mat-icon aria-hidden="false" fontIcon="local_florist" class="icon-left"></mat-icon>
+                    <div>Plant sitting</div>    
+                </div>
+            
+                <div class="cardicon-left">
+                    <mat-icon aria-hidden="false" fontIcon="cleaning_services" class="icon-left"></mat-icon>
+                    <div>Home sitting</div>
+                </div>
+        
+            </div>
+           
+            <div class="cardicon-right">
+                <mat-icon aria-hidden="false" fontIcon="bookmark_border"></mat-icon>
+                <mat-icon aria-hidden="false" fontIcon="filter_list"></mat-icon>
+    
+            </div>
         </div>
-    </div> -->
+        
+    </div>
+
+    <div style="padding-top: 8%; padding-left: 10%;"  *ngIf="displayAnnounces" >
+        <div class="annoucement-container">
+          <div class="announcement-card" *ngFor="let announcement of displayAnnouncements">
+            <img class="announcement-card-image " [src]="announcement.imagePath" alt="Image de l'annonce">
+            <span class="announcement-information-title">City: </span><span>{{ announcement.city }} </span>
+            <span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}
+            <span class="announcement-information-title">m<sup>2</sup>: </span>{{ announcement.numberOfBeds }}
+
+          </div>
+        </div>
+      </div>
+
 </div>

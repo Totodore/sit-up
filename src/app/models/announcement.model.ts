@@ -10,4 +10,5 @@ export interface AnnouncementModel{
     stopDate : Date;
     numberPeopleMax : number;
     numberOfRooms : number;
+    imagePath: string;
 }

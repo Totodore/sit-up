@@ -14,7 +14,7 @@ const isLogged = () => {
 
 const routes: Routes = [
   { path: "auth", component: ConnexionComponent },
-  { path: "", component: HomeComponent, canActivate: [isLogged] },
+  { path: "", component: HomeComponent },
 ];
 
 @NgModule({
