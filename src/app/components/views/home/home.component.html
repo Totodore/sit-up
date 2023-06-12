@@ -27,32 +27,32 @@
         
     </div>
     
-    <div class="filtre" *ngIf="displayFiltre">filtreNumberPeopleMax
+    <div class="filtre" *ngIf="displayFiltre">
       <form (ngSubmit)="submitForm()" #myForm="ngForm">
         <label for="city">City:</label>
         <input type="text" id="city" name="city" [(ngModel)]="filtreCity" required>
-      
-        <label for="postalcode">Postal Code:</label>
+        <br>
+        <label for="postalcode"> Postal Code:</label>
         <input type="number" id="postalcode" name="postalcode" [(ngModel)]="filtrePostalcode" required>
-      
-        <label for="numberOfBeds">Number of Beds:</label>
+        <br>
+        <label for="numberOfBeds"> Number of Beds:</label>
         <input type="number" id="numberOfBeds" name="numberOfBeds" [(ngModel)]="filtreNumberOfBeds" required>
-      
-        <label for="squareMeters">Square Meters:</label>
+        <br>
+        <label for="squareMeters"> Square Meters:</label>
         <input type="number" id="squareMeters" name="squareMeters" [(ngModel)]="filtreSquareMeters" required>
-      
-        <label for="startDate">Start Date:</label>
+        <br>
+        <label for="startDate"> Start Date:</label>
         <input type="date" id="startDate" name="startDate" [(ngModel)]="filtreStartDate" required>
-      
-        <label for="stopDate">Stop Date:</label>
+        
+        <label for="stopDate"> Stop Date:</label>
         <input type="date" id="stopDate" name="stopDate" [(ngModel)]="filtreStopDate" required>
       
-        <label for="numberPeopleMax">Max Number of People:</label>
+        <label for="numberPeopleMax"> Max Number of People:</label>
         <input type="number" id="numberPeopleMax" name="numberPeopleMax" [(ngModel)]="filtreNumberPeopleMax" required>
       
         <label for="numberOfRooms">Number of Rooms:</label>
         <input type="number" id="numberOfRooms" name="numberOfRooms" [(ngModel)]="filtreNumberOfRooms" required>
-      
+        <br>
         <button type="submit" [disabled]="!myForm.form.valid">Submit</button>
       </form>
       

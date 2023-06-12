@@ -43,11 +43,11 @@ export class HomeComponent implements OnInit {
   }
 
   filtreAnnounces(){
-
+    
   }
 
   submitForm(){
-    
+
   }
 
   changeDisplayFiltre(){
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
   public async getAllAnnouncement() {
     try {
       this.announcements = await this._api.get("announcement/all");
-      //console.log(this.announcements);
+      console.log("annonce",this.announcements);
     } catch (e) {
       console.error(e);
       this._snackbar.snack("Error no announcement");

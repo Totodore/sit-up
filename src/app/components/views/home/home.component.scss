@@ -70,12 +70,15 @@
   }
   
   .container {
-    padding-top: 8%;
+    padding-top: 3%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
   .filtre{
-
+    width: 80%;
+    margin-left: 10%;
+    padding: 10px;
+    background-color: white;
   }
