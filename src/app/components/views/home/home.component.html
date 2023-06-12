@@ -29,34 +29,51 @@
     
     <div class="filtre" *ngIf="displayFiltre">
       <form (ngSubmit)="submitForm()" #myForm="ngForm">
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" [(ngModel)]="filtreCity" required>
+        <mat-form-field class="input-filtre">
+          <mat-label>City:</mat-label>
+          <input matInput type="text" id="city" name="city" [(ngModel)]="announcementFilter.city" required>
+        </mat-form-field>
+    
+        <mat-form-field class="input-filtre">
+          <mat-label>Postal Code:</mat-label>
+          <input matInput type="number" id="postalcode" name="postalcode" [(ngModel)]="announcementFilter.postalcode" required>
+        </mat-form-field>
+    
+        <mat-form-field class="input-filtre">
+          <mat-label>Number of Beds:</mat-label>
+          <input matInput type="number" id="numberOfBeds" name="numberOfBeds" [(ngModel)]="announcementFilter.numberOfBeds" required>
+        </mat-form-field>
+    
+        <mat-form-field class="input-filtre">
+          <mat-label>Square Meters:</mat-label>
+          <input matInput type="number" id="squareMeters" name="squareMeters" [(ngModel)]="announcementFilter.squareMeters" required>
+        </mat-form-field >
+    
+        <mat-form-field class="input-filtre">
+          <mat-label>Start Date:</mat-label>
+          <input matInput type="date" id="startDate" name="startDate" [(ngModel)]="announcementFilter.startDate" required>
+        </mat-form-field>
+    
+        <mat-form-field class="input-filtre">
+          <mat-label>Stop Date:</mat-label>
+          <input matInput type="date" id="stopDate" name="stopDate" [(ngModel)]="announcementFilter.stopDate" required>
+        </mat-form-field>
+    
+        <mat-form-field class="input-filtre">
+          <mat-label>Max Number of People:</mat-label>
+          <input matInput type="number" id="numberPeopleMax" name="numberPeopleMax" [(ngModel)]="announcementFilter.numberPeopleMax" required>
+        </mat-form-field>
+    
+        <mat-form-field class="input-filtre">
+          <mat-label>Number of Rooms:</mat-label>
+          <input matInput type="number" id="numberOfRooms" name="numberOfRooms" [(ngModel)]="announcementFilter.numberOfRooms" required>
+        </mat-form-field>
         <br>
-        <label for="postalcode"> Postal Code:</label>
-        <input type="number" id="postalcode" name="postalcode" [(ngModel)]="filtrePostalcode" required>
-        <br>
-        <label for="numberOfBeds"> Number of Beds:</label>
-        <input type="number" id="numberOfBeds" name="numberOfBeds" [(ngModel)]="filtreNumberOfBeds" required>
-        <br>
-        <label for="squareMeters"> Square Meters:</label>
-        <input type="number" id="squareMeters" name="squareMeters" [(ngModel)]="filtreSquareMeters" required>
-        <br>
-        <label for="startDate"> Start Date:</label>
-        <input type="date" id="startDate" name="startDate" [(ngModel)]="filtreStartDate" required>
-        
-        <label for="stopDate"> Stop Date:</label>
-        <input type="date" id="stopDate" name="stopDate" [(ngModel)]="filtreStopDate" required>
-      
-        <label for="numberPeopleMax"> Max Number of People:</label>
-        <input type="number" id="numberPeopleMax" name="numberPeopleMax" [(ngModel)]="filtreNumberPeopleMax" required>
-      
-        <label for="numberOfRooms">Number of Rooms:</label>
-        <input type="number" id="numberOfRooms" name="numberOfRooms" [(ngModel)]="filtreNumberOfRooms" required>
-        <br>
-        <button type="submit" [disabled]="!myForm.form.valid">Submit</button>
+    
+        <button mat-raised-button color="primary" type="submit" >Submit</button>
       </form>
-      
     </div>
+    
 
     
     <div class="container">

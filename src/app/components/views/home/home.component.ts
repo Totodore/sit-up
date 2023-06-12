@@ -12,24 +12,27 @@ export class HomeComponent implements OnInit {
 
   public announcements: AnnouncementModel[] = [];
   public displayAnnouncements: AnnouncementModel[] = [];
-  public announcementFilter: AnnouncementModel[] = [];
-
+  public announcementFilter: Partial<AnnouncementModel> = {
+    address: "",
+    city: "",
+    postalcode: 0,
+    description: "",
+    numberOfBeds: 0,
+    squareMeters: 0,
+    startDate: new Date(),
+    stopDate: new Date(),
+    numberPeopleMax: 0,
+    numberOfRooms: 0,
+    imagePath: ""
+  };
+  
   public firstAnnounceToDisplay: number = 0;
   public buttonIncrementDisabled: boolean = false;
   public buttonDecrementDisabled: boolean = true;
   public numberOfAnnoucementsDisplay: number = 5;
   public displayFiltre: boolean = false; 
 
-
-  public filtreCity?: string;
-  public filtrePostalcode?: number;
-  public filtreNumberOfBeds?: number;
-  public filtreSquareMeters?: number;
-  public filtreStartDate?: Date;
-  public filtreStopDate?: Date;
-  public filtreNumberPeopleMax?: number;
-  public filtreNumberOfRooms?: number;
-
+public test? :AnnouncementModel;
 
   constructor(
     private readonly _api: ApiService,
@@ -40,14 +43,23 @@ export class HomeComponent implements OnInit {
     this.getAllAnnouncement().then(() => {
       this.displayAnnounces();
     });
+
   }
 
-  filtreAnnounces(){
-    
+  public async filtreAnnounces(){
+    try {
+      this.announcements = await this._api.getfilterAnnouncements(this.announcementFilter);
+    } catch (e) {
+      console.error(e);
+      this._snackbar.snack("Error no match announcement");
+    }
   }
 
   submitForm(){
-
+    this.filtreAnnounces();
+    console.log(this.announcements);
+    this.firstAnnounceToDisplay = 0;
+    this.displayAnnounces();
   }
 
   changeDisplayFiltre(){
@@ -87,156 +99,10 @@ export class HomeComponent implements OnInit {
   public async getAllAnnouncement() {
     try {
       this.announcements = await this._api.get("announcement/all");
-      console.log("annonce",this.announcements);
     } catch (e) {
       console.error(e);
       this._snackbar.snack("Error no announcement");
     }
 
-    
-    this.announcements.push({
-      id: 1,
-      address: "123 Rue de l'Exemple",
-      city: "Ville-Exemple1",
-      postalcode: 12345,
-      description: "Ceci est un exemple d'annonce.",
-      numberOfBeds: 2,
-      squareMeters: 80,
-      startDate: new Date("2023-06-15"),
-      stopDate: new Date("2023-06-30"),
-      numberPeopleMax: 4,
-      numberOfRooms: 3,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
-      petSitting: true,
-      plantSitting: true,
-      houseSitting: true,
-    });
-    
-    this.announcements.push(
-    {
-      id: 2,
-      address: "789 Boulevard de l'Exemple",
-      city: "Autre-Ville2",
-      postalcode: 67890,
-      description: "Appartement moderne avec vue panoramique.",
-      numberOfBeds: 1,
-      squareMeters: 50,
-      startDate: new Date("2023-07-01"),
-      stopDate: new Date("2023-07-31"),
-      numberPeopleMax: 2,
-      numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
-      petSitting: true,
-      plantSitting: true,
-      houseSitting: false,
-    })
-    this.announcements.push(
-    {
-      id: 2,
-      address: "789 Boulevard de l'Exemple",
-      city: "Autre-Ville3",
-      postalcode: 67890,
-      description: "Appartement moderne avec vue panoramique.",
-      numberOfBeds: 1,
-      squareMeters: 50,
-      startDate: new Date("2023-07-01"),
-      stopDate: new Date("2023-07-31"),
-      numberPeopleMax: 2,
-      numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
-      petSitting: true,
-      plantSitting: false,
-      houseSitting: true,
-    })
-    this.announcements.push(
-    {
-      id: 2,
-      address: "789 Boulevard de l'Exemple",
-      city: "Autre-Ville4",
-      postalcode: 67890,
-      description: "Appartement moderne avec vue panoramique.",
-      numberOfBeds: 1,
-      squareMeters: 50,
-      startDate: new Date("2023-07-01"),
-      stopDate: new Date("2023-07-31"),
-      numberPeopleMax: 2,
-      numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
-      petSitting: true,
-      plantSitting: false,
-      houseSitting: false,
-    })
-    this.announcements.push({
-      id: 1,
-      address: "123 Rue de l'Exemple",
-      city: "Ville-Exemple5",
-      postalcode: 12345,
-      description: "Ceci est un exemple d'annonce.",
-      numberOfBeds: 2,
-      squareMeters: 80,
-      startDate: new Date("2023-06-15"),
-      stopDate: new Date("2023-06-30"),
-      numberPeopleMax: 4,
-      numberOfRooms: 3,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
-      petSitting: false,
-      plantSitting: true,
-      houseSitting: true,
-    });
-    
-    this.announcements.push(
-    {
-      id: 2,
-      address: "789 Boulevard de l'Exemple",
-      city: "Autre-Ville6",
-      postalcode: 67890,
-      description: "Appartement moderne avec vue panoramique.",
-      numberOfBeds: 1,
-      squareMeters: 50,
-      startDate: new Date("2023-07-01"),
-      stopDate: new Date("2023-07-31"),
-      numberPeopleMax: 2,
-      numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
-      petSitting: false,
-      plantSitting: true,
-      houseSitting: false,
-    })
-    this.announcements.push(
-    {
-      id: 2,
-      address: "789 Boulevard de l'Exemple",
-      city: "Autre-Ville7",
-      postalcode: 67890,
-      description: "Appartement moderne avec vue panoramique.",
-      numberOfBeds: 1,
-      squareMeters: 50,
-      startDate: new Date("2023-07-01"),
-      stopDate: new Date("2023-07-31"),
-      numberPeopleMax: 2,
-      numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
-      petSitting: false,
-      plantSitting: false,
-      houseSitting: true,
-    })
-    this.announcements.push(
-    {
-      id: 2,
-      address: "789 Boulevard de l'Exemple",
-      city: "Autre-Ville8",
-      postalcode: 67890,
-      description: "Appartement moderne avec vue panoramique.",
-      numberOfBeds: 1,
-      squareMeters: 50,
-      startDate: new Date("2023-07-01"),
-      stopDate: new Date("2023-07-31"),
-      numberPeopleMax: 2,
-      numberOfRooms: 2,
-      imagePath:"https://media.istockphoto.com/id/483773209/fr/photo/nouvelle-confortable-cottage.jpg?s=612x612&w=0&k=20&c=NiEdhKDfvinXmYoIjYm-Eu3VEddZOOiZv7EYBaAhWME=",
-      petSitting: false,
-      plantSitting: false,
-      houseSitting: false,
-    })
   }
 }

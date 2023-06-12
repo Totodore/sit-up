@@ -11,7 +11,4 @@ export interface AnnouncementModel{
     numberPeopleMax : number;
     numberOfRooms : number;
     imagePath: string;
-    petSitting: boolean;
-    plantSitting: boolean;
-    houseSitting: boolean;
 }
