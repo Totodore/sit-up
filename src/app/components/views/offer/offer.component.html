@@ -6,7 +6,7 @@
 
       <mat-icon class="{{classClean}}">cleaning_services</mat-icon>
       <span class="spacer1"></span>
-      <button mat-icon-button >
+      <button mat-icon-button (click)="lastID()">
         <mat-icon>navigate_before</mat-icon>
       </button>
     </div>
@@ -26,32 +26,41 @@
           </button>
 
           <mat-chip-listbox aria-label="chips">
-            <mat-chip   *ngFor="let tags of Tags" selected color="accent">
-              {{tags.name}}
+            <mat-chip  highlighted="warn" *ngIf="announcement">
+              nb of Beds={{announcement.numberOfBeds}}
+            </mat-chip>
+            <mat-chip highlighted="warn" *ngIf="announcement">
+              nb of rooms={{announcement.numberOfRooms}}
+            </mat-chip>
+            <mat-chip   highlighted="warn" *ngIf="announcement">
+              max nb of people={{announcement.numberPeopleMax}}
+            </mat-chip>
+            <mat-chip   highlighted="warn" *ngIf="announcement">
+              m²={{announcement.squareMeters}}
+            </mat-chip>
+            <mat-chip   highlighted="warn" *ngIf="announcement">
+              {{startDate}}-{{stopDate}}
+            </mat-chip><mat-chip   highlighted="warn" *ngIf="announcement">
+              no kids
             </mat-chip>
 
 
           </mat-chip-listbox>
         </div>
 
-        <div id="owner">
-          <img id="profile_pic" mat-card-image src={{photoOwner}} alt="Photo of a Shiba Inu" width="50px" height="50px">
-          <h2>{{ownerName}}</h2>
-          <p> {{ownerDetails}}</p>
+        <div id="owner" *ngIf="announcement">
+          <img id="profile_pic" mat-card-image src={{photoOwner}}  alt="Photo of a Shiba Inu" width="50px" height="50px">
+          <h2>{{announcement.author.name}} {{announcement.author.firstname}}</h2>
+
         </div>
 
         <div id="description" *ngIf="announcement">
           <p>
-            {{text}}
+            {{announcement.description}}
           </p>
         </div>
 
-        <div id="condition">
-          <h2>
-            condition
-          </h2>
-          <p>{{condition}}</p>
-        </div>
+
 
         <div id="photo">
           <img mat-card-image *ngFor="let photo of Photo" src={{photo.url}} alt="Photo of a Shiba Inu" width="80px" height="80px">
@@ -85,7 +94,7 @@
         <mat-icon>bookmark_border</mat-icon>
       </button>
       <span class="spacer2"></span>
-      <button mat-icon-button >
+      <button mat-icon-button (click)="nextID()">
         <mat-icon>navigate_next</mat-icon>
       </button>
       </div>

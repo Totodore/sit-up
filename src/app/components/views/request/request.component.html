@@ -1,9 +1,7 @@
 <mat-card id="card1" >
-  <div id="title">
-    My Offer
-  </div>
-  <div id="body">
 
+  <div >
+  <form [formGroup]="requestForm" (submit)="onSubmit()" id="body">
     <mat-card id="card2"  >
 
       <div id="date">
@@ -11,8 +9,8 @@
         <mat-form-field >
           <mat-label>Enter a date range</mat-label>
           <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date">
-            <input matEndDate placeholder="End date">
+            <input class="form-control" matStartDate placeholder="Start date" [formControlName]="'startDate'">
+            <input matEndDate placeholder="End date" [formControlName]="'stopDate'">
           </mat-date-range-input>
 
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -41,15 +39,15 @@
 
         <mat-form-field>
           <mat-label>Adress</mat-label>
-          <input matInput>
+          <input matInput [formControlName]="'address'">
         </mat-form-field>
         <mat-form-field>
           <mat-label>City</mat-label>
-          <input matInput>
+          <input matInput [formControlName]="'city'">
         </mat-form-field>
         <mat-form-field>
           <mat-label>Postal Code</mat-label>
-          <input matInput>
+          <input matInput [formControlName]="'postalCode'">
         </mat-form-field>
       </div>
 
@@ -57,41 +55,52 @@
       <div id="number">
       <div class="number">
         <mat-label>rooms</mat-label>
-        <label class="rooms">{{value_rooms}}</label>
+
         <mat-slider class="rooms_slider"
 
         [max]="20"
         [min]="1"
-        [step]="1">
-          <input matSliderThumb [(ngModel)]="value_rooms">
+        [step]="1"
+        discrete [displayWith]="formatLabel">
+          <input matSliderThumb [formControlName]="'numberOfRooms'">
+        </mat-slider>
+
+      </div>
+      <div class="number">
+        <mat-label>Beds</mat-label>
+
+        <mat-slider class="rooms_slider"
+
+        [max]="40"
+        [min]="1"
+        [step]="1"
+        discrete [displayWith]="formatLabel">
+          <input matSliderThumb [formControlName]="'numberOfBeds'">
         </mat-slider>
 
       </div>
       <div class="number">
         <mat-label>guests</mat-label>
-        <label class="example-value-label">{{value_guests_min}}</label>
-        <label>-</label>
-        <label class="example-value-label">{{value_guests_max}}</label>
+
         <mat-slider class="example-margin"
 
         [max]="20"
         [min]="1"
-        [step]="1">
+        [step]="1"
+        discrete [displayWith]="formatLabel">
 
-          <input value="1" matSliderStartThumb [(ngModel)]="value_guests_min">
-          <input value="10" matSliderEndThumb [(ngModel)]="value_guests_max">
+          <input value="1" matSliderStartThumb>
+          <input value="10" matSliderEndThumb  [formControlName]="'numberOfMaxPeople'">
         </mat-slider>
 
       </div>
       <div class="number">
-        <mat-label>m²</mat-label>
-        <label class="example-value-label">{{value_square}}</label>
+        <mat-label>square feet</mat-label>
+
         <mat-slider class="example-margin"
 
-        [max]="400"
-        [min]="10"
-        [step]="5">
-          <input matSliderThumb [(ngModel)]="value_square">
+        min="10" max="400" step="10"  discrete [displayWith]="formatLabel">
+          <input matSliderThumb [formControlName]="'squareMeters'" >
 
         </mat-slider>
 
@@ -101,32 +110,38 @@
     </mat-card>
     <div id="right">
       <mat-card id="card3">
-        <mat-label>Constraints:</mat-label>
-        <mat-form-field class="example-full-width">
-
-          <textarea matInput placeholder="Ex. no kids, no other pets..."></textarea>
-        </mat-form-field>
+        <span class="example-list-section">
+          <ul>
+            <li *ngFor="let tag of Tags">
+              <mat-checkbox color="primary">
+                {{tag.name}}
+              </mat-checkbox>
+            </li>
+          </ul>
+        </span>
 
       </mat-card>
       <mat-card id="card4">
         <mat-label>Description:</mat-label>
         <mat-form-field class="example-full-width">
 
-          <textarea matInput></textarea>
+          <textarea matInput [formControlName]="'description'"></textarea>
         </mat-form-field>
       </mat-card>
       <mat-card id="card5">
         <mat-label>Photo:</mat-label>
         <input matImput type="file" accept="image/*" name='files[]' multiple>
       </mat-card>
-    </div>
-    <div id="submit">
+      <div id="submit">
+        <span class="spacer1"></span>
+        <button mat-icon-button  type="submit">
+          <mat-icon>send</mat-icon>
+        </button>
 
-      <button (click)="addAnnouncement()" mat-icon-button>
-        <mat-icon>send</mat-icon>
-      </button>
-
+      </div>
     </div>
+
+ </form>
   </div>
 
 

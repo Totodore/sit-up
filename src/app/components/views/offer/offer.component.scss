@@ -1,6 +1,14 @@
+@media screen and (max-width: 800px) {
+  #whole{
+    flex-direction: column;
+
+  }mat-chip{
+    font-size: 2vw;
+  }
+}
 #card1{
   background-color: #faedcd6e;
-
+  min-width: 600px;
   display: flex;
   flex-direction: row;
   margin: 15px;
@@ -26,6 +34,9 @@
   margin-top: 15px;
   margin-bottom: 15px;
   padding: 15px;
+  display: flex;
+  min-width: 500px;
+
 }
 #header{
   display: flex;
@@ -39,7 +50,9 @@ mat-card-header{
 
   align-items: center;
 }
-
+mat-chip-listbox{
+  width: 30vw;
+}
 .spacer1 {
   flex: 0.35 1 auto;
 }.spacer2 {
@@ -49,6 +62,7 @@ mat-card-header{
 #whole{
   display: flex;
   flex-wrap: wrap;
+
 }
 #profile_pic{
   border-radius: 100%;

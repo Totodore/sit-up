@@ -32,6 +32,8 @@ import { RequestComponent } from './components/views/request/request.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
     MatCheckboxModule,
     MatButtonToggleModule,
     MatSliderModule,
-    NgImageSliderModule
+    NgImageSliderModule,
 
     MatFormFieldModule,
     MatIconModule,
@@ -75,6 +77,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
     HttpClientModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: DateHttpInterceptor }
