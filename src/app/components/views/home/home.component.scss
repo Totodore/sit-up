@@ -4,6 +4,8 @@
     background: rgba(250, 237, 205, 0.4);
     position: absolute;
     width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 /* Bandeau dans lequel se trouve les differents icons*/
@@ -11,6 +13,7 @@
     padding-top: 10px;
     padding-left: 10%;
     width: 100%;
+    display: flex;
 }
 
 /* Contenant des icons de gauche*/
@@ -65,5 +68,12 @@
 
   .announcement-information-title{
     font-weight: bold;
+  }
+  
+  .container {
+    padding-top: 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   

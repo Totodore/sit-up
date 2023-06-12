@@ -26,17 +26,26 @@
         </div>
         
     </div>
-
-    <div style="padding-top: 8%; padding-left: 10%;"  *ngIf="displayAnnounces" >
-        <div class="annoucement-container">
-          <div class="announcement-card" *ngFor="let announcement of displayAnnouncements">
-            <img class="announcement-card-image " [src]="announcement.imagePath" alt="Image de l'annonce">
-            <span class="announcement-information-title">City: </span><span>{{ announcement.city }} </span>
-            <span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}
-            <span class="announcement-information-title">m<sup>2</sup>: </span>{{ announcement.numberOfBeds }}
-
+    
+    <div class="container">
+        <button mat-icon-button>
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+          
+        <div *ngIf="displayAnnounces" >
+            <div class="annoucement-container">
+              <div class="announcement-card" *ngFor="let announcement of displayAnnouncements">
+                <img class="announcement-card-image " [src]="announcement.imagePath" alt="Image de l'annonce">
+                <span class="announcement-information-title">City: </span><span>{{ announcement.city }} </span>
+                <span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}
+                <span class="announcement-information-title">m<sup>2</sup>: </span>{{ announcement.numberOfBeds }}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
+          
+          <button mat-icon-button>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>    
+    </div>
+   
 </div>
