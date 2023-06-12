@@ -1,0 +1,58 @@
+#card1{
+  background-color: #faedcd6e;
+  //opacity: 40%;
+  margin-left:15px;
+  margin-right:15px;
+
+
+}
+#body{
+  display: flex;
+}
+#card2,#right{
+  width: 50%;
+}
+#card2, #card3, #card4, #card5{
+  background-color: #ccd5ae93;
+  opacity: 90%;
+  //display: flex;
+  //flex-direction: row;
+
+  margin: 15px;
+  padding: 15px;
+}
+
+
+mat-label{
+  margin-right: 10px;
+
+}
+#location mat-form-field{
+  width: 30%;
+  margin: 5px;
+}
+#date, #service, #location{
+  margin-bottom: 20px;
+}
+#number{
+  display: flex;
+
+}
+.number{
+  width: 30%;
+
+}
+#submit{
+  align-self:flex-end;
+}
+
+
+
+
+
+
+
+
+.spacer {
+  flex: 1 1 auto;
+}

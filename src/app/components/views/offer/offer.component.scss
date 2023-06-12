@@ -1,0 +1,67 @@
+#card1{
+  background-color: #faedcd6e;
+
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+}
+
+#icons,#icons2{
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  align-items: center;
+
+}
+.iconTrue{
+  margin: 10px;
+  color: #495129;
+}.iconFalse{
+  margin: 10px;
+  color: #bbbdb1;
+}
+#card2{
+  background-color: #ccd5ae93;
+  opacity: 90%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 15px;
+}
+#header{
+  display: flex;
+  align-items: center;
+}
+
+#profile_pic{
+  border-radius: 100%;
+}
+mat-card-header{
+
+  align-items: center;
+}
+
+.spacer1 {
+  flex: 0.35 1 auto;
+}.spacer2 {
+  flex: 0.4 1 auto;
+}
+
+#whole{
+  display: flex;
+  flex-wrap: wrap;
+}
+#profile_pic{
+  border-radius: 100%;
+}
+
+#photo img{
+  margin: 10px;
+}
+
+
+#header, #description, #photo{
+  width: 75%;
+}
+#header, #description, #something, #owner, #condition, #contact{
+  margin: 5px;
+}

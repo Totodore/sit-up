@@ -8,42 +8,44 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 $primary-color: (
-  50: #FAEDCD,
-  100: #FAEDCD,
-  200: #FAEDCD,
-  300: #FAEDCD,
-  400: #FAEDCD,
-  500:#FAEDCD,
-  600: #FAEDCD,
-  700: #FAEDCD,
-  800: #FAEDCD,
-  900: #FAEDCD,
+ 50:  #FAEDCD,
+ 100: #FAEDCD,
+ 200: #FAEDCD,
+ 300: #EDD28F,
+ 400: #EDD28F,
+ 500:#FEF9F4,
+ 600: #FEF9F4,
+ 700: #FEF9F4,
+ 800: #FEF9F4,
+ 900: #FEF9F4,
 
-  contrast: (50: rgba(black, 0.87),
-    100: rgba(black, 0.87),
-    200: rgba(black, 0.87),
-    300: white,
-    // ... continues to 900
-  )
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: white,
+   // ... continues to 900
+ )
 );
 $secondary-color: (
-  50: #CCD5AE,
-  100: #CCD5AE,
-  200: #CCD5AE,
-  300: #CCD5AE,
-  400: #CCD5AE,
-  500:#CCD5AE,
-  600: #CCD5AE,
-  700: #CCD5AE,
-  800: #CCD5AE,
-  900: #CCD5AE,
+ 50:  #CCD5AE,
+ 100: #CCD5AE,
+ 200: #CCD5AE,
+ 300: #CCD5AE,
+ 400: #CCD5AE,
+ 500:#CCD5AE,
+ 600: #CCD5AE,
+ 700: #CCD5AE,
+ 800: #CCD5AE,
+ 900: #CCD5AE,
 
-  contrast: (50: rgba(black, 0.87),
-    100: rgba(black, 0.87),
-    200: rgba(black, 0.87),
-    300: white,
-    // ... continues to 900
-  )
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: white,
+   // ... continues to 900
+ )
 );
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
