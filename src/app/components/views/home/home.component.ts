@@ -11,9 +11,11 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 export class HomeComponent implements OnInit {
 
   public announcements: AnnouncementModel[] = [];
-  public annoucement?: AnnouncementModel;
   public displayAnnouncements: AnnouncementModel[] = [];
   public firstAnnounceToDisplay: number = 0;
+  public buttonIncrementDisabled: boolean = false;
+  public buttonDecrementDisabled: boolean = true;
+  public numberOfAnnoucementsDisplay: number = 5;
   constructor(
     private readonly _api: ApiService,
     private readonly _snackbar: SnackbarService
@@ -21,17 +23,39 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllAnnouncement().then(() => {
-      this.afficherElements();
+      this.displayAnnounces();
     });
   }
 
-  displayAnnounces(annoucement: AnnouncementModel){
-    return this.displayAnnouncements.includes(annoucement);
 
-  }
-  afficherElements() {
+  displayAnnounces() {
     this.displayAnnouncements = this.announcements.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay+5); // Afficher les éléments 2 à 5
-    console.log("test",this.displayAnnouncements);
+  }
+
+  incrementDisplayAnnounces(){
+    this.firstAnnounceToDisplay =   this.firstAnnounceToDisplay + 1;
+    this.displayAnnounces();
+    this.buttonStateCalculation();
+  }
+
+  decrementDisplayAnnounces(){
+    this.firstAnnounceToDisplay =   this.firstAnnounceToDisplay -1;
+    this.displayAnnounces();
+    this.buttonStateCalculation();
+  }
+
+  buttonStateCalculation(){
+    if(this.firstAnnounceToDisplay + this.numberOfAnnoucementsDisplay >= this.announcements.length){
+      this.buttonIncrementDisabled = true;
+    }else{
+      this.buttonIncrementDisabled = false;
+    }
+
+    if(this.firstAnnounceToDisplay <= 0){
+      this.buttonDecrementDisabled = true;
+    }else{
+      this.buttonDecrementDisabled = false;
+    }
   }
 
   public async getAllAnnouncement() {

@@ -28,7 +28,7 @@
     </div>
     
     <div class="container">
-        <button mat-icon-button>
+    <button mat-icon-button (click)="decrementDisplayAnnounces()"[disabled]="this.buttonDecrementDisabled">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
           
@@ -43,7 +43,7 @@
             </div>
           </div>
           
-          <button mat-icon-button>
+          <button mat-icon-button (click)="incrementDisplayAnnounces()" [disabled]="this.buttonIncrementDisabled">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>    
     </div>
