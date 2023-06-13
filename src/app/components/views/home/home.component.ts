@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { AnnouncementModel } from 'src/app/models/announcement.model';
 import { LocationResponse } from 'src/app/models/location.model';
 import { HouseActivity } from 'src/app/models/preferences.model';
@@ -10,7 +10,8 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit  {
+  public numberOfAnnoucementsDisplay: number = 5;
 
   public announcements: AnnouncementModel[] = []; // Liste brut
   public filter: Partial<AnnouncementModel> ={}// filtre
@@ -25,15 +26,44 @@ export class HomeComponent implements OnInit {
   public firstAnnounceToDisplay: number = 0;
   public buttonIncrementDisabled: boolean = false;
   public buttonDecrementDisabled: boolean = true;
-  public numberOfAnnoucementsDisplay: number = 5;
   public displayFiltre: boolean = false; 
 
 public test? :AnnouncementModel;
 
   constructor(
     private  _api: ApiService,
-    private readonly _snackbar: SnackbarService
+    private readonly _snackbar: SnackbarService,
+    private renderer: Renderer2
   ) { }
+
+
+  ngAfterViewInit() {
+    this.adjustNumberOfAnnouncesToDisplay();
+
+    // Observateur de redimensionnement de la fenêtre
+    this.renderer.listen('window', 'resize', () => {
+      this.adjustNumberOfAnnouncesToDisplay();
+    });
+  }
+
+  adjustNumberOfAnnouncesToDisplay() {
+    const screenWidth = window.innerWidth;
+    // Définir le nombre d'annonces en fonction de la largeur de l'écran
+    if (screenWidth < 500) {
+      this.numberOfAnnoucementsDisplay = 1;
+    }else if (screenWidth < 900) {
+      this.numberOfAnnoucementsDisplay = 2;
+    }else if (screenWidth < 1100) {
+      this.numberOfAnnoucementsDisplay = 3;
+    }  
+    else if (screenWidth < 1200) {
+      this.numberOfAnnoucementsDisplay = 4;
+    } else {
+      this.numberOfAnnoucementsDisplay = 5;
+    }
+    console.log("youyou",this.numberOfAnnoucementsDisplay)
+    this.displayAnnounces();
+  }
 
   //On initialise la liste d'annonce
   async ngOnInit(): Promise<void> {
@@ -104,8 +134,7 @@ public test? :AnnouncementModel;
 
   //On isole les annonces à afficher
   displayAnnounces() {
-    console.log(this.announcementsFiltered)
-    this.displayAnnouncements = this.announcementsFiltered.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay+5); // Afficher les éléments 2 à 5
+    this.displayAnnouncements = this.announcementsFiltered.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay + this.numberOfAnnoucementsDisplay); // Afficher les éléments 2 à 5
   }
 
   //On increment lors du clique sur le bouton les choix des éléments à afficher
