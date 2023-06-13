@@ -28,7 +28,16 @@ export class OfferComponent {
   classPlant="iconFalse"
   classClean="iconFalse"
 
+
   public announcement?: AnnouncementModel;
+  nbOfBed: number | undefined;
+  nbOfRooms: number | undefined;
+  maxGuest: number | undefined;
+  squareMeters: string | undefined;
+  date: string | undefined;
+  startDate: string | undefined;
+  stopDate: string | undefined;
+
   constructor(private readonly _api: ApiService,
     /*private readonly _snackbar: SnackbarService*/){
     if (this.pets==true){
@@ -40,10 +49,8 @@ export class OfferComponent {
 
     }
 
-  text= 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-  ownerName="example name";
-  ownerDetails="details about the owner";
-  condition="condition"
+
+
   mainPhoto="https://material.angular.io/assets/img/examples/shiba2.jpg"
   photoOwner="https://material.angular.io/assets/img/examples/shiba2.jpg"
 
@@ -74,13 +81,17 @@ export class OfferComponent {
     }
     this.photo1=this.Photo[this.i]
   }
+  id=62
+  lastID(){
+    this.id = this.id- 1
+    this.getAnnouncement();
+  }
+  nextID(){
+    this.id= this.id + 1
+    this.getAnnouncement();
+  }
 
-  Tags: Tags[] = [
-    {name: 'dog'},
-    {name: 'cleaning'},
-    {name: 'los angeles'},
 
-  ];
 
 
 
@@ -98,12 +109,18 @@ export class OfferComponent {
   }
 
   public async getAnnouncement() {
+
     try {
-      this.announcement = await this._api.get("announcement/add/2");
+      this.announcement = await this._api.get(`announcement/get/${this.id}`);
     } catch (e) {
       console.error(e);
       //this._snackbar.snack("Error no announcement");
     }
+    this.startDate = this.announcement?.startDate.toLocaleDateString();
+    this.stopDate=this.announcement?.stopDate.toLocaleDateString()
   }
+
+
+
 
 }
