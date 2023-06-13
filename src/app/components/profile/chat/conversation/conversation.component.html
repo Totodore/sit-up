@@ -1,5 +1,5 @@
 <div class="messages">
-    <div class="message" [class.right]="message.sender.id == otherPerson?.id" *ngFor="let message of messages">
+    <div class="message" [class.right]="message.sender.id != otherPerson?.id" *ngFor="let message of messages">
         {{ message.message }}
     </div>
 </div>
