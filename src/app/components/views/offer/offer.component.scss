@@ -1,81 +1,102 @@
 @media screen and (max-width: 800px) {
-  #whole{
-    flex-direction: column;
+	#whole {
+		flex-direction: column;
 
-  }mat-chip{
-    font-size: 2vw;
-  }
-}
-#card1{
-  background-color: #faedcd6e;
-  min-width: 600px;
-  display: flex;
-  flex-direction: row;
-  margin: 15px;
+	}
+
+	mat-chip {
+		font-size: 2vw;
+	}
 }
 
-#icons,#icons2{
-  display: flex;
-  flex-direction: column;
-  width: 20vw;
-  align-items: center;
-
-}
-.iconTrue{
-  margin: 10px;
-  color: #495129;
-}.iconFalse{
-  margin: 10px;
-  color: #bbbdb1;
-}
-#card2{
-  background-color: #ccd5ae93;
-  opacity: 90%;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  padding: 15px;
-  display: flex;
-  min-width: 500px;
-
-}
-#header{
-  display: flex;
-  align-items: center;
+#card1 {
+	background-color: #faedcd6e;
+	min-width: 600px;
+	display: flex;
+	flex-direction: row;
+	margin: 15px;
 }
 
-#profile_pic{
-  border-radius: 100%;
-}
-mat-card-header{
+#icons,
+#icons2 {
+	display: flex;
+	flex-direction: column;
+	width: 20vw;
+	align-items: center;
 
-  align-items: center;
+	mat-icon {
+		margin: 10px;
+		color: #495129;
+		&.disabled {
+			margin: 10px;
+			color: #bbbdb1;
+		}
+	}
 }
-mat-chip-listbox{
-  width: 30vw;
+
+#card2 {
+	background-color: #ccd5ae93;
+	opacity: 90%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 15px;
+	display: flex;
+	min-width: 500px;
+
 }
+
+#header {
+	display: flex;
+	align-items: center;
+}
+
+#profile_pic {
+	border-radius: 100%;
+}
+
+mat-card-header {
+
+	align-items: center;
+}
+
+mat-chip-listbox {
+	width: 30vw;
+}
+
 .spacer1 {
-  flex: 0.35 1 auto;
-}.spacer2 {
-  flex: 0.4 1 auto;
+	flex: 0.35 1 auto;
 }
 
-#whole{
-  display: flex;
-  flex-wrap: wrap;
-
-}
-#profile_pic{
-  border-radius: 100%;
+.spacer2 {
+	flex: 0.4 1 auto;
 }
 
-#photo img{
-  margin: 10px;
+#whole {
+	display: flex;
+	flex-wrap: wrap;
+
+}
+
+#profile_pic {
+	border-radius: 100%;
+}
+
+#photo img {
+	margin: 10px;
 }
 
 
-#header, #description, #photo{
-  width: 75%;
+#header,
+#description,
+#photo {
+	width: 75%;
 }
-#header, #description, #something, #owner, #condition, #contact{
-  margin: 5px;
+
+#header,
+#description,
+#something,
+#owner,
+#condition,
+#contact {
+	margin: 5px;
 }

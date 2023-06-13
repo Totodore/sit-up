@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { lastValueFrom } from "rxjs";
-import { UserLoginReq, UserLoginRes, UserModel, UserRegisterReq } from "../models/user.model";
-import { AnnouncementModel } from "../models/announcement.model";
+import { User, UserLoginReq, UserLoginRes, UserRegisterReq } from "../models/user.model";
 
 export class BaseApi {
 
@@ -98,7 +97,7 @@ export class BaseApi {
   public get jwt(): string | null {
     return localStorage.getItem("jwt");
   }
-  public get user(): UserModel {
+  public get user(): User {
     return JSON.parse(localStorage.getItem("me")!);
   }
 

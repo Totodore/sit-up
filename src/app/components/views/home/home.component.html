@@ -91,7 +91,7 @@
 
 		<div *ngIf="displayAnnounces">
 			<div class="annoucement-container">
-				<div class="announcement-card" *ngFor="let announcement of displayAnnouncements">
+				<div class="announcement-card" [routerLink]="'/offer/' + announcement.id" *ngFor="let announcement of displayAnnouncements">
 					<img class="announcement-card-image " [src]="announcement.imagePath" alt="Image de l'annonce">
 					<span class="announcement-information-title">City: </span><span>{{ announcement.city }} </span>
 					<span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}

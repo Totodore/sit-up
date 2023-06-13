@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: "inscription", component: InscriptionComponent },
   { path: "profile", component: ProfileComponent  },
   { path: "message", component: ProfileComponent  },
-  { path: 'offer', component: OfferComponent },
+  { path: 'offer/:id', component: OfferComponent },
   { path: 'request', component: RequestComponent },
 ];
 

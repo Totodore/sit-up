@@ -12,6 +12,6 @@ export class ApiService extends BaseApi {
   }
 
   public async getLocationFromSearch(search: string): Promise<LocationResponse> {
-    return lastValueFrom(this.http.get<LocationResponse>(`https://api-adresse.data.gouv.fr/search?q=${search}`));
+    return lastValueFrom(this.http.get<LocationResponse>(`https://api-adresse.data.gouv.fr/search?q=${search}&type=housenumber`));
   }
 }

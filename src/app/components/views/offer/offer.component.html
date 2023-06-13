@@ -1,104 +1,99 @@
-<mat-card onload="changeIcon()" id="card1" >
-  <div id="icons">
-    <mat-icon  class="{{classPets}}" >pets</mat-icon>
+<mat-card onload="changeIcon()" id="card1">
+	<div id="icons" *ngIf="announcement">
 
-      <mat-icon class="{{classPlant}}">local_florist</mat-icon>
+		<mat-icon [class.disabled]="!announcement.activities.includes(HouseActivity.PET_SITTING)">pets</mat-icon>
 
-      <mat-icon class="{{classClean}}">cleaning_services</mat-icon>
-      <span class="spacer1"></span>
-      <button mat-icon-button (click)="lastID()">
-        <mat-icon>navigate_before</mat-icon>
-      </button>
-    </div>
+		<mat-icon
+			[class.disabled]="!announcement.activities.includes(HouseActivity.PLANT_SITTING)">local_florist</mat-icon>
 
-    <mat-card id="card2"  >
+		<mat-icon
+			[class.disabled]="!announcement.activities.includes(HouseActivity.HOUSE_SITTING)">cleaning_services</mat-icon>
+		<span class="spacer1"></span>
+		<button mat-icon-button (click)="lastID()">
+			<mat-icon>navigate_before</mat-icon>
+		</button>
+	</div>
 
-      <div id="whole">
-        <div id="header">
-          <button mat-icon-button (click)="lastPhoto()" >
-            <mat-icon>navigate_before</mat-icon>
-          </button>
+	<mat-card id="card2">
 
-          <img  mat-card-image src={{photo1.url}} alt="Photo of a Shiba Inu" width="130px" height="130px">
+		<div id="whole" *ngIf="announcement">
+			<div id="header">
+				<button mat-icon-button (click)="lastPhoto()">
+					<mat-icon>navigate_before</mat-icon>
+				</button>
 
-          <button mat-icon-button (click)="nextPhoto()" >
-            <mat-icon>navigate_next</mat-icon>
-          </button>
+				<img mat-card-image [src]="currentPhoto" alt="Photo of a Shiba Inu" width="130px" height="130px">
 
-          <mat-chip-listbox aria-label="chips">
-            <mat-chip  highlighted="warn" *ngIf="announcement">
-              nb of Beds={{announcement.numberOfBeds}}
-            </mat-chip>
-            <mat-chip highlighted="warn" *ngIf="announcement">
-              nb of rooms={{announcement.numberOfRooms}}
-            </mat-chip>
-            <mat-chip   highlighted="warn" *ngIf="announcement">
-              max nb of people={{announcement.numberPeopleMax}}
-            </mat-chip>
-            <mat-chip   highlighted="warn" *ngIf="announcement">
-              m²={{announcement.squareMeters}}
-            </mat-chip>
-            <mat-chip   highlighted="warn" *ngIf="announcement">
-              {{startDate}}-{{stopDate}}
-            </mat-chip><mat-chip   highlighted="warn" *ngIf="announcement">
-              no kids
-            </mat-chip>
-
-
-          </mat-chip-listbox>
-        </div>
-
-        <div id="owner" *ngIf="announcement">
-          <img id="profile_pic" mat-card-image src={{photoOwner}}  alt="Photo of a Shiba Inu" width="50px" height="50px">
-          <h2>{{announcement.author.name}} {{announcement.author.firstname}}</h2>
-
-        </div>
-
-        <div id="description" *ngIf="announcement">
-          <p>
-            {{announcement.description}}
-          </p>
-        </div>
+				<button mat-icon-button (click)="nextPhoto()">
+					<mat-icon>navigate_next</mat-icon>
+				</button>
+				<mat-chip-listbox aria-label="chips">
+					<mat-chip highlighted="warn">
+						nb of Beds={{ announcement.numberOfBeds }}
+					</mat-chip>
+					<mat-chip highlighted="warn">
+						nb of rooms={{ announcement.numberOfRooms }}
+					</mat-chip>
+					<mat-chip highlighted="warn">
+						max nb of people={{ announcement.numberPeopleMax }}
+					</mat-chip>
+					<mat-chip highlighted="warn">
+						m²={{ announcement.squareMeters }}
+					</mat-chip>
+					<mat-chip highlighted="warn">
+						{{ announcement.startDate | date: 'short' }} - {{ announcement.stopDate | date: 'short' }}
+					</mat-chip><mat-chip highlighted="warn">
+						no kids
+					</mat-chip>
 
 
+				</mat-chip-listbox>
+			</div>
 
-        <div id="photo">
-          <img mat-card-image *ngFor="let photo of Photo" src={{photo.url}} alt="Photo of a Shiba Inu" width="80px" height="80px">
+			<div id="owner">
+				<img id="profile_pic" mat-card-image [src]="photoOwner" alt="Photo of a Shiba Inu" width="50px"
+					height="50px">
+				<h2>{{ announcement.author.name }} {{ announcement.author.firstname }}</h2>
 
-          </div>
+			</div>
 
-        <div id="contact">
-          <h2>Contact</h2>
-          <mat-form-field class="example-form-field">
-            <button *ngIf="value" matSuffix mat-icon-button  (click)="value=''">
-              <mat-icon>send</mat-icon>
-            </button>
-
-            <input  matInput type="text" [(ngModel)]="value">
-
-          </mat-form-field>
-        </div>
-
-      </div>
-
-
-    </mat-card>
+			<div id="description">
+				<p>
+					{{ announcement.description }}
+				</p>
+			</div>
 
 
 
-  <div id="icons2">
-      <button mat-icon-button>
-        <mat-icon>filter_list</mat-icon>
-      </button>
-      <button mat-icon-button >
-        <mat-icon>bookmark_border</mat-icon>
-      </button>
-      <span class="spacer2"></span>
-      <button mat-icon-button (click)="nextID()">
-        <mat-icon>navigate_next</mat-icon>
-      </button>
-      </div>
+			<div id="photo">
+				<img mat-card-image *ngFor="let photo of photos" [src]="photo" alt="Photo of a Shiba Inu" width="80px"
+					height="80px">
+			</div>
+
+			<div id="contact">
+				<h2>Contact</h2>
+				<mat-form-field class="example-form-field">
+					<mat-label>Envoyer un message</mat-label>
+					<input matInput type="text" #messageInput>
+					<button matSuffix mat-icon-button (click)="sendMessage(messageInput.value)">
+						<mat-icon>send</mat-icon>
+					</button>
+				</mat-form-field>
+			</div>
+		</div>
+	</mat-card>
+
+
+
+	<div id="icons2">
+		<button mat-icon-button>
+			<mat-icon>filter_list</mat-icon>
+		</button>
+
+		<span class="spacer2"></span>
+		<button mat-icon-button (click)="nextID()">
+			<mat-icon>navigate_next</mat-icon>
+		</button>
+	</div>
 
 </mat-card>
-
-

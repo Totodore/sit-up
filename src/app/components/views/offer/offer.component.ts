@@ -1,17 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import { SnackbarService } from 'src/app/services/snackbar.service';
 import { AnnouncementModel } from 'src/app/models/announcement.model';
 import { ApiService } from 'src/app/services/api.service';
-
-
-export interface Tags {
-  name: string;
-}
-export interface Photo {
-  url: string;
-}
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { HouseActivity } from 'src/app/models/preferences.model';
 
 @Component({
   selector: 'app-offer',
@@ -19,108 +10,83 @@ export interface Photo {
   styleUrls: ['./offer.component.scss']
 })
 
-export class OfferComponent {
-  pets=true
-  plant=false
-  clean=true
-
-  classPets="iconFalse"
-  classPlant="iconFalse"
-  classClean="iconFalse"
-
-
+export class OfferComponent implements OnInit {
   public announcement?: AnnouncementModel;
-  nbOfBed: number | undefined;
-  nbOfRooms: number | undefined;
-  maxGuest: number | undefined;
-  squareMeters: string | undefined;
-  date: string | undefined;
-  startDate: string | undefined;
-  stopDate: string | undefined;
+  public id?: number = 1;
 
-  constructor(private readonly _api: ApiService,
-    /*private readonly _snackbar: SnackbarService*/){
-    if (this.pets==true){
-      this.classPets="iconTrue"}
-    if (this.plant==true){
-      this.classPets="iconTrue"}
-      if (this.clean==true){
-        this.classClean="iconTrue"}
+  HouseActivity = HouseActivity;
 
+  constructor(
+    private readonly _api: ApiService,
+    private readonly router: Router,
+    private readonly _route: ActivatedRoute,
+  ) { }
+
+  mainPhoto = "https://material.angular.io/assets/img/examples/shiba2.jpg"
+  photoOwner = "https://material.angular.io/assets/img/examples/shiba2.jpg"
+
+  photos: string[] = [
+    "https://material.angular.io/assets/img/examples/shiba2.jpg",
+    "assets/photo/sit-up-logo.jpg",
+    "assets/photo/house-exemple.jpg",
+    "https://material.angular.io/assets/img/examples/shiba2.jpg",
+    "assets/photo/sit-up-logo.jpg",
+    "assets/photo/house-exemple.jpg",
+  ];
+
+  currentPhoto = this.photos[0];
+  currentPhotoIndex = 0;
+
+  lastPhoto() {
+    this.currentPhotoIndex = this.currentPhotoIndex - 1
+    let a = this.photos.length
+    if (this.currentPhotoIndex == -1) {
+      this.currentPhotoIndex = a - 1
     }
+    this.currentPhoto = this.photos[this.currentPhotoIndex]
+  }
 
-
-
-  mainPhoto="https://material.angular.io/assets/img/examples/shiba2.jpg"
-  photoOwner="https://material.angular.io/assets/img/examples/shiba2.jpg"
-
-  Photo: Photo[]=[
-    {url:"https://material.angular.io/assets/img/examples/shiba2.jpg"},
-    {url:"../../../../assets/photo/sit-up-logo.jpg"},
-    {url:"../../../../assets/photo/house-exemple.jpg"},
-    {url:"https://material.angular.io/assets/img/examples/shiba2.jpg"},
-    {url:"../../../../assets/photo/sit-up-logo.jpg"},
-    {url:"../../../../assets/photo/house-exemple.jpg"},
-  ]
-  photo1=this.Photo[0]
-  i=0;
-
-  lastPhoto(){
-    this.i=this.i-1
-    let a=this.Photo.length
-    if (this.i==-1){
-      this.i=a-1
+  nextPhoto() {
+    this.currentPhotoIndex = this.currentPhotoIndex + 1
+    let a = this.photos.length
+    if (this.currentPhotoIndex == a) {
+      this.currentPhotoIndex = 0
     }
-    this.photo1=this.Photo[this.i]
+    this.currentPhoto = this.photos[this.currentPhotoIndex]
   }
-  nextPhoto(){
-    this.i=this.i+1
-    let a=this.Photo.length
-    if (this.i==a){
-      this.i=0
-    }
-    this.photo1=this.Photo[this.i]
+
+  lastID() {
+    if (!this.id)
+      return;
+    this.router.navigate(["offer", this.id - 1]);
   }
-  id=62
-  lastID(){
-    this.id = this.id- 1
-    this.getAnnouncement();
-  }
-  nextID(){
-    this.id= this.id + 1
-    this.getAnnouncement();
+
+  nextID() {
+    if (!this.id)
+      return;
+    this.router.navigate(["offer", this.id + 1]);
   }
 
 
-
-
-
-  value = '';
-
-
-
-//database
-
-
-
-
-  ngOnInit(): void {
-    this.getAnnouncement();
+  public ngOnInit(): void {
+    this._route.paramMap.subscribe(params => {
+      this.id = +params.get("id")!;
+      this.getAnnouncement();
+    });
   }
 
   public async getAnnouncement() {
-
     try {
       this.announcement = await this._api.get(`announcement/get/${this.id}`);
     } catch (e) {
       console.error(e);
-      //this._snackbar.snack("Error no announcement");
     }
-    this.startDate = this.announcement?.startDate.toLocaleDateString();
-    this.stopDate=this.announcement?.stopDate.toLocaleDateString()
   }
-
-
-
+  public async sendMessage(message: string) {
+    await this._api.post("message", {
+      message,
+      receiverId: this.announcement?.author.id
+    });
+  }
 
 }

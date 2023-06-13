@@ -1,26 +1,5 @@
-enum AnimalEnum {
-  Cat,
-  Dog,
-  Frog,
-  Rabbit,
-  Turtle,
-  Fish,
-  Snake,
-  Bird,
-  Hamster,
-}
-
-enum HouseActivityEnum {
-  PET_SITTING,
-  PLANT_SITTING,
-  HOUSE_SITTING
-}
-
-enum HousingTypeEnum {
-  HOUSE,
-  APARTMENT,
-}
-
+import { Animal, HouseActivity, HousingType } from "./preferences.model";
+import { User } from "./user.model";
 
 export interface AnnouncementModel {
   id: number;
@@ -36,14 +15,15 @@ export interface AnnouncementModel {
   stopDate: Date;
   numberPeopleMax: number;
   numberOfRooms: number;
-  activities: HouseActivityEnum;
-  housingType: HousingTypeEnum;
-  refusedAnimals: AnimalEnum;
+  activities: HouseActivity[];
+  housingType: HousingType;
+  refusedAnimals: Animal[];
   allowedChildren: boolean;
   allowedPets: boolean;
   allowedSmoking: boolean;
   wifi: boolean;
   imagePath: string;
+  author: User;
 }
 export interface AnnouncementModelReq {
 
@@ -57,6 +37,6 @@ export interface AnnouncementModelReq {
   stopDate: Date;
   numberPeopleMax: number;
   numberOfRooms: number;
-  author: UserModel;
+  author: User;
 }
 
