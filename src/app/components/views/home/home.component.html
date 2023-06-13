@@ -86,6 +86,7 @@
             <div class="announcement-card" [routerLink]="'/offer/' + announcement.id"
               *ngFor="let announcement of displayAnnouncements">
               <img class="announcement-card-image " [src]="'https://material.angular.io/assets/img/examples/shiba2.jpg'" alt="Image de l'annonce">
+              <span class="announcement-information-title">City: </span>{{ announcement.address }}<br />
               <span class="announcement-information-title">City: </span>{{ announcement.city }}<br />
               <span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}<br />
               <span class="announcement-information-title">m<sup>2</sup>: </span>{{ announcement.squareMeters }}<br />

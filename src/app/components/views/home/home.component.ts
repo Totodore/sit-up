@@ -33,36 +33,63 @@ public test? :AnnouncementModel;
   async ngOnInit(): Promise<void> {
     await this.getAllAnnouncement();
     await this.ResearchAnnounces();
-    await this.displayAnnounces();
   }
 
   // On recherche l'annonce correspondant au champs du filtre
-  public async filtreAnnounces(){
-
+  public filtreAnnounces(tmp_announcement: AnnouncementModel){
+    if (this.filter.numberOfBeds && tmp_announcement.numberOfBeds !== this.filter.numberOfBeds) {
+      return false;
+    }
+    if(this.filter.city && tmp_announcement.city != this.filter.city){
+      return false;
+    }
+    if(this.filter.postalcode && tmp_announcement.postalcode != this.filter.postalcode){
+      return false;
+    }
+    if(this.filter.squareMeters && tmp_announcement.squareMeters != this.filter.squareMeters){
+      return false;
+    }    
+    if(this.filter.startDate && tmp_announcement.startDate != this.filter.startDate){
+      return false;
+    }
+    if(this.filter.stopDate && tmp_announcement.stopDate != this.filter.stopDate){
+      return false;
+    }
+    if(this.filter.numberPeopleMax && tmp_announcement.numberPeopleMax != this.filter.numberPeopleMax){
+      return false;
+    }
+    if(this.filter.numberOfRooms && tmp_announcement.numberOfRooms != this.filter.numberOfRooms){
+      return false;
+    }
+    return true;
   }
 
   public async ResearchAnnounces(){
+    this.firstAnnounceToDisplay = 0;
+    this.announcementsFiltered = [];
     this.announcements.forEach((announcement: AnnouncementModel) => {
+      if(this.filtreAnnounces(announcement)){
         this.announcementsFiltered.push(announcement);
+      }
     });
+    await this.displayAnnounces();
   }
 
-  //On valide le form
+  //On valide le forme
   submitForm(){
-    this.filtreAnnounces();
-    console.log(this.announcements);
-    this.firstAnnounceToDisplay = 0;
-    this.displayAnnounces();
+    this.ResearchAnnounces();
   }
 
   //On affiche ou cache le champs de filtre
   changeDisplayFiltre(){
     this.displayFiltre = !this.displayFiltre;
+    this.filter = {};
+    this.ResearchAnnounces();
   }
 
   //On isole les annonces à afficher
   displayAnnounces() {
-    this.displayAnnouncements = this.announcements.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay+5); // Afficher les éléments 2 à 5
+    this.displayAnnouncements = this.announcementsFiltered.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay+5); // Afficher les éléments 2 à 5
   }
 
   //On increment lors du clique sur le bouton les choix des éléments à afficher
