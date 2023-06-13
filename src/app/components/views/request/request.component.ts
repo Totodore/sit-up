@@ -53,8 +53,9 @@ export class RequestComponent {
 
   async onSubmit() {
     try {
-      const announcement = await this.api.post('announcement/add', this.announcement);
-      console.log(announcement);
+      const announcement: AnnouncementModel = await this.api.post('announcement/add', this.announcement);
+      this._snackbar.snack('Your announcement has been created');
+      this.router.navigate(['/']);
     } catch (e) {
       console.error(e);
       this._snackbar.snack('Something went wrong');
