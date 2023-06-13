@@ -99,10 +99,16 @@
 			<div class="annoucement-container">
 				<div class="announcement-card" [routerLink]="'/offer/' + announcement.id"
 					*ngFor="let announcement of displayAnnouncements">
-					<img class="announcement-card-image " [src]="announcement.imagePath" alt="Image de l'annonce">
-					<span class="announcement-information-title">City: </span><span>{{ announcement.city }} </span>
-					<span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}
-					<span class="announcement-information-title">m<sup>2</sup>: </span>{{ announcement.numberOfBeds }}
+					<img class="announcement-card-image " [src]="'https://material.angular.io/assets/img/examples/shiba2.jpg'" alt="Image de l'annonce">
+					<span class="announcement-information-title">City: </span>{{ announcement.city }}<br />
+					<span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}<br />
+					<span class="announcement-information-title">m<sup>2</sup>: </span>{{ announcement.squareMeters }}<br />
+					<span class="announcement-information-title">Rooms: </span>{{ announcement.numberOfRooms }}<br />
+					<span class="announcement-information-title">People: </span>{{ announcement.numberPeopleMax }}<br />
+					<span class="announcement-information-title">Start Date: </span>{{ announcement.startDate | date:'dd/MM/yyyy' }}<br />
+					<span class="announcement-information-title">Stop Date: </span>{{ announcement.stopDate | date:'dd/MM/yyyy' }}<br />
+					<span class="announcement-information-title">Description: </span>{{ announcement.description }}<br />
+					<span class="announcement-information-title">User: </span>{{ announcement.author.firstname }} {{ announcement.author.name }}<br />
 				</div>
 			</div>
 		</div>
