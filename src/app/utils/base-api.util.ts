@@ -63,8 +63,8 @@ export class BaseApi {
     }));
   }
 
-  public put<R>(path: string): Promise<R> {
-    return lastValueFrom(this.http.put<R>(`${this.root}/${path}`, {}, {
+  public put<R, B>(path: string, body: B): Promise<R> {
+    return lastValueFrom(this.http.put<R>(`${this.root}/${path}`, body, {
       headers: {
         "Authorization": this.jwt ?? "",
       },

@@ -53,3 +53,17 @@ mat-tab-group ::ng-deep .mat-mdc-tab-body-wrapper {
   column-gap: 15px;
   width: 100%;
 }
+
+.done-btn {
+	position: fixed;
+    bottom: 25px;
+    right: 25px;
+}
+
+.pref-wrapper {
+	display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: center;
+    margin-top: 25px;
+}

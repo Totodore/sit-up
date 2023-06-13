@@ -1,5 +1,5 @@
 <mat-card class="green-card">
-	<mat-tab-group class="profile-card">
+	<mat-tab-group class="profile-card" color="accent">
 		<mat-tab>
 			<ng-template mat-tab-label>
 				<mat-icon class="example-tab-icon">perm_identity</mat-icon>
@@ -8,24 +8,10 @@
 			<div class="wrapper">
 
 				<div class="left-wrapper">
-					<p>Profile details</p>
+					<h2>Profile details :</h2>
 					<p *ngIf="user">First Name : {{ user.firstname }}</p>
 					<p *ngIf="user">Name : {{ user.name }}</p>
 					<p *ngIf="user">Adress email : {{ user.email }}</p>
-					<p *ngIf="user">Password : xxxxx</p>
-
-					<p>Preferences </p>
-
-					<p>Booking and Trips</p>
-					<mat-card class="example-card">
-						<mat-card-header>
-							<div mat-card-avatar class="example-header-image"></div>
-							<mat-card-title>Location</mat-card-title>
-							<mat-card-subtitle>Dates</mat-card-subtitle>
-						</mat-card-header>
-						<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-							alt="Photo of a Shiba Inu">
-					</mat-card>
 				</div>
 
 				<app-chat *ngIf="isMessage" class="messages">
@@ -37,17 +23,53 @@
 		<mat-tab>
 			<ng-template mat-tab-label>
 				<mat-icon class="example-tab-icon">settings</mat-icon>
-				Settings
+				Preferences
 			</ng-template>
-			<p>Slide Toggle inside of a Template-driven form</p>
-			<!-- 
-            <form class="example-form" #form="ngForm" (ngSubmit)="alertFormValues(form.form)">
+			<div class="pref-wrapper" *ngIf="prefs">
+				<mat-form-field color="accent">
+					<mat-label>House Activity</mat-label>
+					<mat-select [(value)]="prefs.activities" [multiple]="true">
+						<mat-option *ngFor="let entry of HouseActivity | keyvalue" [value]="entry.value">{{
+							entry.key }}</mat-option>
+					</mat-select>
+				</mat-form-field>
 
-                 <mat-slide-toggle ngModel name="enableWifi">Enable Wifi</mat-slide-toggle>
-                 <mat-slide-toggle ngModel name="acceptTerms" required>Accept Terms of Service</mat-slide-toggle>
+				<mat-form-field color="accent">
+					<mat-label>Housing type</mat-label>
+					<mat-select [(value)]="prefs.housingType">
+						<mat-option *ngFor="let entry of HousingType | keyvalue" [value]="entry.value">{{
+							entry.key }}</mat-option>
+					</mat-select>
+				</mat-form-field>
 
-                 <button mat-raised-button type="submit">Save Settings</button>
-            </form> -->
+
+				<mat-form-field color="accent">
+					<mat-label>Refused Animal</mat-label>
+					<mat-select [(value)]="prefs.refusedAnimals" [multiple]="true">
+						<mat-option *ngFor="let entry of Animal | keyvalue" [value]="entry.value">{{
+							entry.key }}</mat-option>
+					</mat-select>
+				</mat-form-field>
+
+
+				<mat-label>With children</mat-label>
+				<mat-checkbox [(ngModel)]="prefs.allowedChildren"></mat-checkbox>
+
+
+				<mat-label>With Pets</mat-label>
+				<mat-checkbox [(ngModel)]="prefs.allowedPets"></mat-checkbox>
+
+
+				<mat-label>Smoking allowed</mat-label>
+				<mat-checkbox [(ngModel)]="prefs.allowedSmoking"></mat-checkbox>
+
+				<mat-label>Wifi</mat-label>
+				<mat-checkbox [(ngModel)]="prefs.wifi"></mat-checkbox>
+
+				<button (click)="save()" class="done-btn" mat-fab color="primary">
+					<mat-icon>done</mat-icon>
+				</button>
+			</div>
 		</mat-tab>
 	</mat-tab-group>
 

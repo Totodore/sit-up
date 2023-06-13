@@ -36,6 +36,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ChatComponent } from './components/profile/chat/chat.component';
 import { ConversationComponent } from './components/profile/chat/conversation/conversation.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +81,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatSlideToggleModule,
     MatExpansionModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: DateHttpInterceptor }
