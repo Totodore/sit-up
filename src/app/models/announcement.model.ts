@@ -25,18 +25,16 @@ export interface AnnouncementModel {
   imagePath: string;
   author: User;
 }
-export interface AnnouncementModelReq {
+export interface AnnouncementSearchModel {
+    x: number;
+    y: number;
+    range: number;
 
-  address: string;
-  city: string;
-  postalCode: number;
-  description: string;
-  numberOfBeds: number;
-  squareMeters: number;
-  startDate: Date;
-  stopDate: Date;
-  numberPeopleMax: number;
-  numberOfRooms: number;
-  author: User;
+    numberOfBeds?: number;
+    squareMeters?: number;
+    startDate?: Date;
+    stopDate?: Date;
+    numberPeople?: number;
+    numberOfRooms?: number;
 }
 

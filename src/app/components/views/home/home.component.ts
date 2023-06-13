@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AnnouncementModel } from 'src/app/models/announcement.model';
+import { AnnouncementModel, AnnouncementSearchModel } from 'src/app/models/announcement.model';
 import { LocationProperties, LocationResponse } from 'src/app/models/location.model';
 import { ApiService } from 'src/app/services/api.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -14,28 +14,7 @@ export class HomeComponent implements OnInit {
   public announcements: AnnouncementModel[] = [];
   public displayAnnouncements: AnnouncementModel[] = [];
   public answerCalculationOfCoordinates: LocationProperties[] = [];
-  public announcementFilter: Partial<AnnouncementModel> = {
-    address: "8 bd du port",
-    city: undefined,
-    x: 648952,
-    y: 6977867,
-    postalcode: undefined,
-    description: undefined,
-    numberOfBeds: undefined,
-    squareMeters: undefined,
-    startDate: undefined,
-    stopDate: undefined,
-    numberPeopleMax: undefined,
-    numberOfRooms: undefined,
-    imagePath: undefined,
-    activities: undefined,
-    housingType: undefined,
-    refusedAnimals: undefined,
-    allowedChildren: undefined,
-    allowedPets: undefined,
-    allowedSmoking: undefined,
-    wifi: undefined,
-  };
+  public announcementFilter: Partial<AnnouncementSearchModel> = {};
 
   public searchInput: string = "";
 
@@ -44,8 +23,6 @@ export class HomeComponent implements OnInit {
   public buttonDecrementDisabled: boolean = true;
   public numberOfAnnoucementsDisplay: number = 5;
   public displayFiltre: boolean = false;
-
-  public test?: AnnouncementModel;
 
   constructor(
     private _api: ApiService,
@@ -62,7 +39,10 @@ export class HomeComponent implements OnInit {
   // On recherche l'annonce correspondant au champs du filtre
   public async filtreAnnounces() {
     try {
-      this.announcements = await this._api.post<Partial<AnnouncementModel>, AnnouncementModel[]>(`announcements/filter`, this.announcementFilter);
+      this.announcementFilter.x = this.answerCalculationOfCoordinates[0].x;
+      this.announcementFilter.y = this.answerCalculationOfCoordinates[0].y;
+      this.announcementFilter.range ??= 10;
+      this.announcements = await this._api.post<Partial<AnnouncementModel>, AnnouncementModel[]>(`announcement/search`, this.announcementFilter);
     } catch (e) {
       console.error(e);
       this._snackbar.snack("Error no match announcement");
@@ -135,5 +115,10 @@ export class HomeComponent implements OnInit {
       console.error("Une erreur s'est produite lors de la recherche de l'emplacement :", error);
     }
   }
+  
+  public formatLabel(value: number): string {
+    return `${value}`;
+  }
+
 
 }

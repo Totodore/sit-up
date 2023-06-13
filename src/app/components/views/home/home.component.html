@@ -41,6 +41,12 @@
 				</mat-autocomplete>
 			</mat-form-field>
 
+			<div class="range">
+				<mat-label>Range in km</mat-label>
+				<mat-slider class="rooms_slider" [max]="100" [min]="1" [step]="1" discrete [displayWith]="formatLabel">
+					<input matSliderThumb [(value)]="announcementFilter.range">
+				</mat-slider>
+			</div>
 			<mat-form-field class="input-filtre">
 				<mat-label>Number of Beds:</mat-label>
 				<input matInput type="number" id="numberOfBeds" name="numberOfBeds"
@@ -68,7 +74,7 @@
 			<mat-form-field class="input-filtre">
 				<mat-label>Max Number of People:</mat-label>
 				<input matInput type="number" id="numberPeopleMax" name="numberPeopleMax"
-					[(ngModel)]="announcementFilter.numberPeopleMax" required>
+					[(ngModel)]="announcementFilter.numberPeople" required>
 			</mat-form-field>
 
 			<mat-form-field class="input-filtre">
@@ -91,7 +97,8 @@
 
 		<div *ngIf="displayAnnounces">
 			<div class="annoucement-container">
-				<div class="announcement-card" [routerLink]="'/offer/' + announcement.id" *ngFor="let announcement of displayAnnouncements">
+				<div class="announcement-card" [routerLink]="'/offer/' + announcement.id"
+					*ngFor="let announcement of displayAnnouncements">
 					<img class="announcement-card-image " [src]="announcement.imagePath" alt="Image de l'annonce">
 					<span class="announcement-information-title">City: </span><span>{{ announcement.city }} </span>
 					<span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}
