@@ -1,100 +1,108 @@
 <div class="card">
-    <div class="headband">
-        <div style="width: 90%;">
-            <div style="width: 40%;">
-                <div class="cardicon-left">
-                    <mat-icon aria-hidden="false" fontIcon="pets" class="icon-left"></mat-icon>
-                    <div>Pet sitting</div>
-                </div>
-                <div class="cardicon-left">
-                    <mat-icon aria-hidden="false" fontIcon="local_florist" class="icon-left"></mat-icon>
-                    <div>Plant sitting</div>    
-                </div>
-            
-                <div class="cardicon-left">
-                    <mat-icon aria-hidden="false" fontIcon="cleaning_services" class="icon-left"></mat-icon>
-                    <div>Home sitting</div>
-                </div>
-        
-            </div>
-           
-            <div class="cardicon-right">
-                <mat-icon aria-hidden="false" fontIcon="bookmark_border"></mat-icon>
-                <mat-icon aria-hidden="false" fontIcon="filter_list" (click)="changeDisplayFiltre()"></mat-icon>
-    
-            </div>
-        </div>
-        
-    </div>
-    
-    <div class="filtre" *ngIf="displayFiltre">
-      <form (ngSubmit)="submitForm()" #myForm="ngForm">
-        <mat-form-field class="input-filtre">
-          <mat-label>City:</mat-label>
-          <input matInput type="text" id="city" name="city" [(ngModel)]="announcementFilter.city" required>
-        </mat-form-field>
-    
-        <mat-form-field class="input-filtre">
-          <mat-label>Postal Code:</mat-label>
-          <input matInput type="number" id="postalcode" name="postalcode" [(ngModel)]="announcementFilter.postalcode" required>
-        </mat-form-field>
-    
-        <mat-form-field class="input-filtre">
-          <mat-label>Number of Beds:</mat-label>
-          <input matInput type="number" id="numberOfBeds" name="numberOfBeds" [(ngModel)]="announcementFilter.numberOfBeds" required>
-        </mat-form-field>
-    
-        <mat-form-field class="input-filtre">
-          <mat-label>Square Meters:</mat-label>
-          <input matInput type="number" id="squareMeters" name="squareMeters" [(ngModel)]="announcementFilter.squareMeters" required>
-        </mat-form-field >
-    
-        <mat-form-field class="input-filtre">
-          <mat-label>Start Date:</mat-label>
-          <input matInput type="date" id="startDate" name="startDate" [(ngModel)]="announcementFilter.startDate" required>
-        </mat-form-field>
-    
-        <mat-form-field class="input-filtre">
-          <mat-label>Stop Date:</mat-label>
-          <input matInput type="date" id="stopDate" name="stopDate" [(ngModel)]="announcementFilter.stopDate" required>
-        </mat-form-field>
-    
-        <mat-form-field class="input-filtre">
-          <mat-label>Max Number of People:</mat-label>
-          <input matInput type="number" id="numberPeopleMax" name="numberPeopleMax" [(ngModel)]="announcementFilter.numberPeopleMax" required>
-        </mat-form-field>
-    
-        <mat-form-field class="input-filtre">
-          <mat-label>Number of Rooms:</mat-label>
-          <input matInput type="number" id="numberOfRooms" name="numberOfRooms" [(ngModel)]="announcementFilter.numberOfRooms" required>
-        </mat-form-field>
-        <br>
-    
-        <button mat-raised-button color="primary" type="submit" >Submit</button>
-      </form>
-    </div>
-    
+	<div class="headband">
+		<div style="width: 90%;">
+			<div style="width: 40%;">
+				<div class="cardicon-left" matRipple>
+					<mat-icon aria-hidden="false" fontIcon="pets" class="icon-left"></mat-icon>
+					<div>Pet sitting</div>
+				</div>
+				<div class="cardicon-left" matRipple>
+					<mat-icon aria-hidden="false" fontIcon="local_florist" class="icon-left"></mat-icon>
+					<div>Plant sitting</div>
+				</div>
 
-    
-    <div class="container">
-    <button mat-icon-button (click)="decrementDisplayAnnounces()"[disabled]="this.buttonDecrementDisabled">
-            <mat-icon>keyboard_arrow_left</mat-icon>
-          </button>
-          
-        <div *ngIf="displayAnnounces" >
-            <div class="annoucement-container">
-              <div class="announcement-card" *ngFor="let announcement of displayAnnouncements">
-                <img class="announcement-card-image " [src]="announcement.imagePath" alt="Image de l'annonce">
-                <span class="announcement-information-title">City: </span><span>{{ announcement.city }} </span>
-                <span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}
-                <span class="announcement-information-title">m<sup>2</sup>: </span>{{ announcement.numberOfBeds }}
-              </div>
-            </div>
-          </div>
-          
-          <button mat-icon-button (click)="incrementDisplayAnnounces()" [disabled]="this.buttonIncrementDisabled">
-            <mat-icon>keyboard_arrow_right</mat-icon>
-          </button>    
-    </div>
-   
+				<div class="cardicon-left" matRipple>
+					<mat-icon aria-hidden="false" fontIcon="cleaning_services" class="icon-left"></mat-icon>
+					<div>Home sitting</div>
+				</div>
+
+			</div>
+
+			<div class="cardicon-right">
+				<button mat-icon-button (click)="changeDisplayFiltre()">
+					<mat-icon aria-hidden="false" fontIcon="filter_list"></mat-icon>
+				</button>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="filtre" *ngIf="displayFiltre">
+		<form (ngSubmit)="submitForm()" #myForm="ngForm">
+			<mat-form-field class="input-filtre">
+				<mat-label>Location :</mat-label>
+				<input matInput type="text" id="city" name="city" [(ngModel)]="searchInput"
+					(ngModelChange)="calculationOfCoordinates($event)" required [matAutocomplete]="auto">
+				<mat-autocomplete #auto="matAutocomplete">
+					<mat-option *ngFor="let option of answerCalculationOfCoordinates"
+						[value]="option.housenumber + ' ' + option.street + ' ' + option.city">
+						{{ option.housenumber }} {{ option.street }} {{ option.city }}
+					</mat-option>
+				</mat-autocomplete>
+			</mat-form-field>
+
+			<mat-form-field class="input-filtre">
+				<mat-label>Number of Beds:</mat-label>
+				<input matInput type="number" id="numberOfBeds" name="numberOfBeds"
+					[(ngModel)]="announcementFilter.numberOfBeds" required>
+			</mat-form-field>
+
+			<mat-form-field class="input-filtre">
+				<mat-label>Square Meters:</mat-label>
+				<input matInput type="number" id="squareMeters" name="squareMeters"
+					[(ngModel)]="announcementFilter.squareMeters" required>
+			</mat-form-field>
+
+			<mat-form-field class="input-filtre" color="accent">
+				<mat-label>Date:</mat-label>
+				<mat-date-range-input [rangePicker]="picker">
+					<input matStartDate [(ngModel)]="announcementFilter.startDate" placeholder="Start date">
+					<input matEndDate [(ngModel)]="announcementFilter.stopDate" placeholder="End date">
+				</mat-date-range-input>
+				<mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+				<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-date-range-picker #picker></mat-date-range-picker>
+			</mat-form-field>
+
+
+			<mat-form-field class="input-filtre">
+				<mat-label>Max Number of People:</mat-label>
+				<input matInput type="number" id="numberPeopleMax" name="numberPeopleMax"
+					[(ngModel)]="announcementFilter.numberPeopleMax" required>
+			</mat-form-field>
+
+			<mat-form-field class="input-filtre">
+				<mat-label>Number of Rooms:</mat-label>
+				<input matInput type="number" id="numberOfRooms" name="numberOfRooms"
+					[(ngModel)]="announcementFilter.numberOfRooms" required>
+			</mat-form-field>
+			<br>
+
+			<button mat-raised-button color="primary" type="submit">Submit</button>
+		</form>
+	</div>
+
+
+
+	<div class="container">
+		<button mat-icon-button (click)="decrementDisplayAnnounces()" [disabled]="this.buttonDecrementDisabled">
+			<mat-icon>keyboard_arrow_left</mat-icon>
+		</button>
+
+		<div *ngIf="displayAnnounces">
+			<div class="annoucement-container">
+				<div class="announcement-card" *ngFor="let announcement of displayAnnouncements">
+					<img class="announcement-card-image " [src]="announcement.imagePath" alt="Image de l'annonce">
+					<span class="announcement-information-title">City: </span><span>{{ announcement.city }} </span>
+					<span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}
+					<span class="announcement-information-title">m<sup>2</sup>: </span>{{ announcement.numberOfBeds }}
+				</div>
+			</div>
+		</div>
+
+		<button mat-icon-button (click)="incrementDisplayAnnounces()" [disabled]="this.buttonIncrementDisabled">
+			<mat-icon>keyboard_arrow_right</mat-icon>
+		</button>
+	</div>
+
 </div>

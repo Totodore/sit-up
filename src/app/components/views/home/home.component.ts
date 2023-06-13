@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnouncementModel } from 'src/app/models/announcement.model';
-import { LocationResponse } from 'src/app/models/location.model';
+import { LocationProperties, LocationResponse } from 'src/app/models/location.model';
 import { ApiService } from 'src/app/services/api.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   public announcements: AnnouncementModel[] = [];
   public displayAnnouncements: AnnouncementModel[] = [];
-  public answerCalculationOfCoordinates?: LocationResponse;
+  public answerCalculationOfCoordinates: LocationProperties[] = [];
   public announcementFilter: Partial<AnnouncementModel> = {
     address: "8 bd du port",
     city: undefined,
@@ -36,17 +36,19 @@ export class HomeComponent implements OnInit {
     allowedSmoking: undefined,
     wifi: undefined,
   };
-  
+
+  public searchInput: string = "";
+
   public firstAnnounceToDisplay: number = 0;
   public buttonIncrementDisabled: boolean = false;
   public buttonDecrementDisabled: boolean = true;
   public numberOfAnnoucementsDisplay: number = 5;
-  public displayFiltre: boolean = false; 
+  public displayFiltre: boolean = false;
 
-public test? :AnnouncementModel;
+  public test?: AnnouncementModel;
 
   constructor(
-    private  _api: ApiService,
+    private _api: ApiService,
     private readonly _snackbar: SnackbarService
   ) { }
 
@@ -58,9 +60,9 @@ public test? :AnnouncementModel;
   }
 
   // On recherche l'annonce correspondant au champs du filtre
-  public async filtreAnnounces(){
+  public async filtreAnnounces() {
     try {
-      this.announcements = await this._api.getSearchAnnouncements(this.announcementFilter);
+      this.announcements = await this._api.post<Partial<AnnouncementModel>, AnnouncementModel[]>(`announcements/filter`, this.announcementFilter);
     } catch (e) {
       console.error(e);
       this._snackbar.snack("Error no match announcement");
@@ -68,7 +70,7 @@ public test? :AnnouncementModel;
   }
 
   //On valide le form
-  submitForm(){
+  submitForm() {
     this.filtreAnnounces();
     console.log(this.announcements);
     this.firstAnnounceToDisplay = 0;
@@ -76,40 +78,40 @@ public test? :AnnouncementModel;
   }
 
   //On affiche ou cache le champs de filtre
-  changeDisplayFiltre(){
+  changeDisplayFiltre() {
     this.displayFiltre = !this.displayFiltre;
   }
 
   //On isole les annonces à afficher
   displayAnnounces() {
-    this.displayAnnouncements = this.announcements.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay+5); // Afficher les éléments 2 à 5
+    this.displayAnnouncements = this.announcements.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay + 5); // Afficher les éléments 2 à 5
   }
 
   //On increment lors du clique sur le bouton les choix des éléments à afficher
-  incrementDisplayAnnounces(){
-    this.firstAnnounceToDisplay =   this.firstAnnounceToDisplay + 1;
+  incrementDisplayAnnounces() {
+    this.firstAnnounceToDisplay = this.firstAnnounceToDisplay + 1;
     this.displayAnnounces();
     this.buttonStateCalculation();
   }
 
   //On decrement lors du clique sur le bouton les choix des éléments à afficher
-  decrementDisplayAnnounces(){
-    this.firstAnnounceToDisplay =   this.firstAnnounceToDisplay -1;
+  decrementDisplayAnnounces() {
+    this.firstAnnounceToDisplay = this.firstAnnounceToDisplay - 1;
     this.displayAnnounces();
     this.buttonStateCalculation();
   }
 
-    //On test si les bouton de selection d'annonce sont activé
-  buttonStateCalculation(){
-    if(this.firstAnnounceToDisplay + this.numberOfAnnoucementsDisplay >= this.announcements.length){
+  //On test si les bouton de selection d'annonce sont activé
+  buttonStateCalculation() {
+    if (this.firstAnnounceToDisplay + this.numberOfAnnoucementsDisplay >= this.announcements.length) {
       this.buttonIncrementDisabled = true;
-    }else{
+    } else {
       this.buttonIncrementDisabled = false;
     }
 
-    if(this.firstAnnounceToDisplay <= 0){
+    if (this.firstAnnounceToDisplay <= 0) {
       this.buttonDecrementDisabled = true;
-    }else{
+    } else {
       this.buttonDecrementDisabled = false;
     }
   }
@@ -125,11 +127,10 @@ public test? :AnnouncementModel;
   }
 
   //On calcule les coordonnées d'un lieux
-  public async calculationOfCoordinates(){
-    const searchInput: string = "Paris";
+  public async calculationOfCoordinates(searchInput: string) {
     try {
-      this.answerCalculationOfCoordinates = await this._api.getLocationFromSearch(searchInput);
-      console.log("test",this.answerCalculationOfCoordinates);
+      const res = await this._api.getLocationFromSearch(searchInput);
+      this.answerCalculationOfCoordinates = res.features.map((feature) => feature.properties);
     } catch (error) {
       console.error("Une erreur s'est produite lors de la recherche de l'emplacement :", error);
     }

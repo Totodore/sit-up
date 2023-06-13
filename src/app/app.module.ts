@@ -1,4 +1,4 @@
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +20,7 @@ import { ConnexionComponent } from './components/views/connexion/connexion.compo
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { InscriptionComponent } from './components/views/inscription/inscription.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -66,6 +66,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatChipsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatRippleModule,
     MatCheckboxModule,
     MatButtonToggleModule,
     MatSliderModule,

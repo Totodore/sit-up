@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  cheminImage:any = "../../views/photo/sit-up-logo.jpg";
 }
