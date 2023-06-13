@@ -1,5 +1,5 @@
 <div class="messages">
-    <div class="message" [class.right]="message.sender.id != otherPerson?.id" *ngFor="let message of messages">
+    <div class="message" [class.right]="message.sender.id == otherPerson?.id" *ngFor="let message of messages">
         {{ message.message }}
     </div>
 </div>
@@ -7,5 +7,5 @@
 <mat-form-field>
     <mat-label>Message</mat-label>
     <input type="text" matInput [(ngModel)]="messageContent">
+	<button mat-icon-button (click)="sendMessage()" matSuffix><mat-icon>send</mat-icon></button>
 </mat-form-field>
-<button mat-icon-button (click)="sendMessage()"><mat-icon>send</mat-icon></button>

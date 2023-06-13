@@ -1,9 +1,8 @@
 .green-card {
   width: 98vw;
   height: 87vh;
-  display: flex;
+  overflow: hidden;
   margin: auto;
-  position: static;
   background-color: #faedcd;
 }
 
@@ -13,7 +12,6 @@ mat-tab-group ::ng-deep .mat-mdc-tab-body-wrapper {
 .profile-card {
   margin: 2%;
   height: 100%;
-  margin-bottom: 0%;
 }
 
 .mat-sort-header-container {

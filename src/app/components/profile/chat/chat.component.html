@@ -1,13 +1,19 @@
 <div class="messages">
-    <div class="message" *ngFor="let message of latestMessages">
-        {{ message.sender.name }}
-        <div style="width: 100%; margin-top: 20px; margin-bottom: 20px;"></div>
-        <app-conversation [otherPerson]="message.sender">
+	<h1>Conversations</h1>
+	<mat-accordion>
 
-        </app-conversation>
-    </div>
+		<mat-expansion-panel #panel="matExpansionPanel" class="message" *ngFor="let message of latestMessages">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					{{ message.sender.name }}
+				</mat-panel-title>
+				<mat-panel-description>
+					{{ message.message }} at {{ message.date | date: 'short' }}
+				</mat-panel-description>
+			</mat-expansion-panel-header>
+			<app-conversation [otherPerson]="message.sender" *ngIf="panel.expanded">
+
+			</app-conversation>
+		</mat-expansion-panel>
+	</mat-accordion>
 </div>
-<!-- Mettre app-conversation dans le contenu de expansion tile avec le senderId en paramètre -->
-<!-- <app-conversation [otherPerson]="message.sender">
-    
-</app-conversation> -->
