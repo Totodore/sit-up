@@ -28,7 +28,8 @@ export class ConnexionComponent {
     });
 
     if (ok) {
-      this.router.navigateByUrl("home");
+      this.router.navigateByUrl("/");
+      this.snackbar.snack('Welcome !');
     } else {
       this.snackbar.snack('Identifiants incorrects. Veuillez réessayer.');
     }
