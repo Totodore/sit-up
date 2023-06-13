@@ -32,7 +32,6 @@ export class RequestComponent {
     [HouseActivity.PLANT_SITTING]: 'local_florist',
   };
 
-  public searchInput: string = "";
   public locationResponse: LocationProperties[] = [];
 
   selectedChoice: any;
