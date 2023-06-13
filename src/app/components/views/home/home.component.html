@@ -2,19 +2,19 @@
   <div class="headband">
       <div style="width: 90%;">
           <div style="width: 40%;">
-              <div class="cardicon-left">
-                  <mat-icon aria-hidden="false" fontIcon="pets" class="icon-left"></mat-icon>
-                  <div>Pet sitting</div>
-              </div>
-              <div class="cardicon-left">
-                  <mat-icon aria-hidden="false" fontIcon="local_florist" class="icon-left"></mat-icon>
-                  <div>Plant sitting</div>    
-              </div>
-          
-              <div class="cardicon-left">
-                  <mat-icon aria-hidden="false" fontIcon="cleaning_services" class="icon-left"></mat-icon>
-                  <div>Home sitting</div>
-              </div>
+            <div class="cardicon-left" matRipple [class.text-underline]="!isPetSitting" (click)="changeIsPetSitting()">
+              <mat-icon aria-hidden="false" fontIcon="pets" class="icon-left"></mat-icon>
+              <div >Pet sitting</div>
+            </div>
+            <div class="cardicon-left" matRipple [class.text-underline]="!isPlantSitting" (click)="changeIsPlantSitting()">
+              <mat-icon aria-hidden="false" fontIcon="local_florist" class="icon-left"></mat-icon>
+              <div>Plant sitting</div>
+            </div>
+    
+            <div class="cardicon-left" matRipple [class.text-underline]="!isHomeSitting" (click)="changeIsHomeSitting()">
+              <mat-icon aria-hidden="false" fontIcon="cleaning_services" class="icon-left"></mat-icon>
+              <div>Home sitting</div>
+            </div>
       
           </div>
          

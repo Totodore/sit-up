@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnouncementModel } from 'src/app/models/announcement.model';
 import { LocationResponse } from 'src/app/models/location.model';
+import { HouseActivity } from 'src/app/models/preferences.model';
 import { ApiService } from 'src/app/services/api.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
@@ -12,10 +13,15 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 export class HomeComponent implements OnInit {
 
   public announcements: AnnouncementModel[] = []; // Liste brut
-  public filter: Partial<AnnouncementModel> ={}// Liste brut
+  public filter: Partial<AnnouncementModel> ={}// filtre
   public announcementsFiltered: AnnouncementModel[] = [];//Liste filtré
   public displayAnnouncements: AnnouncementModel[] = [];// List à afficher
   
+
+  public isPetSitting: boolean = false;
+  public isHomeSitting: boolean = false;
+  public isPlantSitting: boolean = false;
+
   public firstAnnounceToDisplay: number = 0;
   public buttonIncrementDisabled: boolean = false;
   public buttonDecrementDisabled: boolean = true;
@@ -61,6 +67,15 @@ public test? :AnnouncementModel;
     if(this.filter.numberOfRooms && tmp_announcement.numberOfRooms != this.filter.numberOfRooms){
       return false;
     }
+    if(this.isPetSitting && tmp_announcement.activities.includes(HouseActivity.PET_SITTING)){
+      return false;
+    }
+    if(this.isPlantSitting && tmp_announcement.activities.includes(HouseActivity.PLANT_SITTING)){
+      return false;
+    }    
+    if(this.isHomeSitting && tmp_announcement.activities.includes(HouseActivity.HOUSE_SITTING)){
+      return false;
+    }
     return true;
   }
 
@@ -89,6 +104,7 @@ public test? :AnnouncementModel;
 
   //On isole les annonces à afficher
   displayAnnounces() {
+    console.log(this.announcementsFiltered)
     this.displayAnnouncements = this.announcementsFiltered.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay+5); // Afficher les éléments 2 à 5
   }
 
@@ -131,4 +147,21 @@ public test? :AnnouncementModel;
       this._snackbar.snack("Error no announcement");
     }
   }
+
+  public changeIsPlantSitting(){
+    this.isPlantSitting = !this.isPlantSitting;
+    this.ResearchAnnounces();
+  }
+
+  public changeIsHomeSitting(){
+    this.isHomeSitting = !this.isHomeSitting;
+    this.ResearchAnnounces();
+  }   
+
+  public changeIsPetSitting(){
+    this.isPetSitting = !this.isPetSitting;
+    this.ResearchAnnounces();
+  }
+
+
 }
