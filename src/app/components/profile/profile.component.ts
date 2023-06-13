@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Animal, HouseActivity, HousingType, Preferences } from 'src/app/models/preferences.model';
 import { User } from 'src/app/models/user.model';
 import { ApiService } from 'src/app/services/api.service';
@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private readonly api: ApiService,
     private readonly snackbar: SnackbarService,
+    private readonly router: Router,
     route: ActivatedRoute,
   ) { 
     route.url.subscribe(url =>  {
@@ -47,6 +48,11 @@ export class ProfileComponent implements OnInit {
       console.error(e);
       this.snackbar.snack("Cannot save preferences");
     }
+  }
+
+  public logout() {
+    this.api.logout();
+    this.router.navigateByUrl("/auth");
   }
 
 }

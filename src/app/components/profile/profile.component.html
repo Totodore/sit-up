@@ -12,6 +12,8 @@
 					<p *ngIf="user">First Name : {{ user.firstname }}</p>
 					<p *ngIf="user">Name : {{ user.name }}</p>
 					<p *ngIf="user">Adress email : {{ user.email }}</p>
+
+					<button mat-raised-button (click)="logout()">Logout <mat-icon matSuffix>logout</mat-icon></button>
 				</div>
 
 				<app-chat *ngIf="isMessage" class="messages">

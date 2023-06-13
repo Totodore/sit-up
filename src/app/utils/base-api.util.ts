@@ -26,7 +26,7 @@ export class BaseApi {
   public async register(body: UserRegisterReq): Promise<boolean> {
     try {
       const res = await lastValueFrom(this.http.post<UserLoginRes>(`${this.root}/auth/register`, body));
-      localStorage.setItem("jwt", res.token);
+      localStorage.setItem("jwt", "Bearer " + res.token);
       return true;
     } catch (err) {
       console.error(err);
