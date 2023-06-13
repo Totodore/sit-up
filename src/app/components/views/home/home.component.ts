@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   public displayAnnouncements: AnnouncementModel[] = [];
   public answerCalculationOfCoordinates?: LocationResponse;
   public announcementFilter: Partial<AnnouncementModel> = {
-    address: "8 bd du port",
+    address: undefined,
     city: undefined,
     x: 648952,
     y: 6977867,
@@ -55,6 +55,8 @@ public test? :AnnouncementModel;
     this.getAllAnnouncement().then(() => {
       this.displayAnnounces();
     });
+
+    this.calculationOfCoordinates()
   }
 
   // On recherche l'annonce correspondant au champs du filtre
@@ -126,7 +128,7 @@ public test? :AnnouncementModel;
 
   //On calcule les coordonnées d'un lieux
   public async calculationOfCoordinates(){
-    const searchInput: string = "Paris";
+    const searchInput: string = "8 bd du port Paris";
     try {
       this.answerCalculationOfCoordinates = await this._api.getLocationFromSearch(searchInput);
       console.log("test",this.answerCalculationOfCoordinates);
