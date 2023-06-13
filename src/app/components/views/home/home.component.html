@@ -41,29 +41,30 @@
 				</mat-autocomplete>
 			</mat-form-field>
 
-			<div class="range">
+			<!-- <div class="range">
 				<mat-label>Range in km</mat-label>
 				<mat-slider class="rooms_slider" [max]="100" [min]="1" [step]="1" discrete [displayWith]="formatLabel">
 					<input matSliderThumb [(value)]="announcementFilter.range">
 				</mat-slider>
-			</div>
+			</div> -->
+
 			<mat-form-field class="input-filtre">
 				<mat-label>Number of Beds:</mat-label>
 				<input matInput type="number" id="numberOfBeds" name="numberOfBeds"
-					[(ngModel)]="announcementFilter.numberOfBeds" required>
+					[(ngModel)]="filter.numberOfBeds">
 			</mat-form-field>
 
 			<mat-form-field class="input-filtre">
 				<mat-label>Square Meters:</mat-label>
 				<input matInput type="number" id="squareMeters" name="squareMeters"
-					[(ngModel)]="announcementFilter.squareMeters" required>
+					[(ngModel)]="filter.squareMeters">
 			</mat-form-field>
 
 			<mat-form-field class="input-filtre" color="accent">
 				<mat-label>Date:</mat-label>
 				<mat-date-range-input [rangePicker]="picker">
-					<input matStartDate [(ngModel)]="announcementFilter.startDate" placeholder="Start date">
-					<input matEndDate [(ngModel)]="announcementFilter.stopDate" placeholder="End date">
+					<input matStartDate [(ngModel)]="filter.startDate" placeholder="Start date">
+					<input matEndDate [(ngModel)]="filter.stopDate" placeholder="End date">
 				</mat-date-range-input>
 				<mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
 				<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -74,13 +75,13 @@
 			<mat-form-field class="input-filtre">
 				<mat-label>Max Number of People:</mat-label>
 				<input matInput type="number" id="numberPeopleMax" name="numberPeopleMax"
-					[(ngModel)]="announcementFilter.numberPeople" required>
+					[(ngModel)]="filter.numberPeopleMax" >
 			</mat-form-field>
 
 			<mat-form-field class="input-filtre">
 				<mat-label>Number of Rooms:</mat-label>
 				<input matInput type="number" id="numberOfRooms" name="numberOfRooms"
-					[(ngModel)]="announcementFilter.numberOfRooms" required>
+					[(ngModel)]="filter.numberOfRooms" required>
 			</mat-form-field>
 			<br>
 
@@ -99,16 +100,10 @@
 			<div class="annoucement-container">
 				<div class="announcement-card" [routerLink]="'/offer/' + announcement.id"
 					*ngFor="let announcement of displayAnnouncements">
-					<img class="announcement-card-image " [src]="'https://material.angular.io/assets/img/examples/shiba2.jpg'" alt="Image de l'annonce">
-					<span class="announcement-information-title">City: </span>{{ announcement.city }}<br />
-					<span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}<br />
-					<span class="announcement-information-title">m<sup>2</sup>: </span>{{ announcement.squareMeters }}<br />
-					<span class="announcement-information-title">Rooms: </span>{{ announcement.numberOfRooms }}<br />
-					<span class="announcement-information-title">People: </span>{{ announcement.numberPeopleMax }}<br />
-					<span class="announcement-information-title">Start Date: </span>{{ announcement.startDate | date:'dd/MM/yyyy' }}<br />
-					<span class="announcement-information-title">Stop Date: </span>{{ announcement.stopDate | date:'dd/MM/yyyy' }}<br />
-					<span class="announcement-information-title">Description: </span>{{ announcement.description }}<br />
-					<span class="announcement-information-title">User: </span>{{ announcement.author.firstname }} {{ announcement.author.name }}<br />
+					<img class="announcement-card-image " [src]="announcement.imagePath" alt="Image de l'annonce">
+					<span class="announcement-information-title">City: </span><span>{{ announcement.city }} </span>
+					<span class="announcement-information-title">Beds: </span>{{ announcement.numberOfBeds }}
+					<span class="announcement-information-title">m<sup>2</sup>: </span>{{ announcement.numberOfBeds }}
 				</div>
 			</div>
 		</div>

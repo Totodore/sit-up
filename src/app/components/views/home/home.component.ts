@@ -11,11 +11,14 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 })
 export class HomeComponent implements OnInit {
 
-  public announcements: AnnouncementModel[] = [];
-  public displayAnnouncements: AnnouncementModel[] = [];
-  public answerCalculationOfCoordinates: LocationProperties[] = [];
-  public announcementFilter: Partial<AnnouncementSearchModel> = {};
+  public announcements: AnnouncementModel[] = [];//Liste brut
+  public filter: Partial<AnnouncementModel> = {}; //filtre
+  public annoucementFiltered: AnnouncementModel[] = []; // Liste filtré
+  public displayAnnouncements: AnnouncementModel[] = [];//liste à afficher
 
+
+  public announcementFilter: Partial<AnnouncementSearchModel> = {}; //filtre
+  public answerCalculationOfCoordinates: LocationProperties[] = [];
   public searchInput: string = "";
 
   public firstAnnounceToDisplay: number = 0;
@@ -30,29 +33,32 @@ export class HomeComponent implements OnInit {
   ) { }
 
   //On initialise la liste d'annonce
-  ngOnInit(): void {
-    this.getAllAnnouncement().then(() => {
-      this.displayAnnounces();
-    });
+  async ngOnInit(): Promise<void> {
+    await this.getAllAnnouncement();
+    await this.ResearchAnnounces();
+    this.displayAnnounces();
   }
 
-  // On recherche l'annonce correspondant au champs du filtre
-  public async filtreAnnounces() {
-    try {
-      this.announcementFilter.x = this.answerCalculationOfCoordinates[0].x;
-      this.announcementFilter.y = this.answerCalculationOfCoordinates[0].y;
-      this.announcementFilter.range ??= 10;
-      this.announcements = await this._api.post<Partial<AnnouncementModel>, AnnouncementModel[]>(`announcement/search`, this.announcementFilter);
-    } catch (e) {
-      console.error(e);
-      this._snackbar.snack("Error no match announcement");
+  public FilterAnnouces(tmp_annoucement: AnnouncementModel){
+    if (this.filter.numberOfBeds && tmp_annoucement.numberOfBeds !== this.filter.numberOfBeds) {
+      return false; // L'annonce ne correspond pas au nombre de lits spécifié, la filtrer
     }
+    return true; // L'annonce passe tous les critères de filtrage
+  }
+
+  // On filtre les annonces
+  public async ResearchAnnounces() {
+    this.announcements.forEach((announcement: AnnouncementModel) => {
+      if(this.FilterAnnouces(announcement)){
+        this.annoucementFiltered.push(announcement);
+      }
+    });
   }
 
   //On valide le form
   submitForm() {
-    this.filtreAnnounces();
-    console.log(this.announcements);
+    this.ResearchAnnounces();
+    console.log(this.filter);
     this.firstAnnounceToDisplay = 0;
     this.displayAnnounces();
   }
@@ -64,7 +70,7 @@ export class HomeComponent implements OnInit {
 
   //On isole les annonces à afficher
   displayAnnounces() {
-    this.displayAnnouncements = this.announcements.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay + 5); // Afficher les éléments 2 à 5
+    this.displayAnnouncements = this.annoucementFiltered.slice(this.firstAnnounceToDisplay, this.firstAnnounceToDisplay + 5); // Afficher les éléments 2 à 5
   }
 
   //On increment lors du clique sur le bouton les choix des éléments à afficher
