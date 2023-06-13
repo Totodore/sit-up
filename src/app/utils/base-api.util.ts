@@ -108,21 +108,18 @@ export class BaseApi {
     return new HttpHeaders({ "Authorization": this.jwt });
   }
 
-  public async getfilterAnnouncements(params: any): Promise<AnnouncementModel[]> {
-    try {
-      const res = await lastValueFrom(this.http.get<AnnouncementModel[]>(`${this.root}/announcement/filter`, {
-        headers: {
-          "Authorization": this.jwt ?? "",
-        },
-        params: params,
-        reportProgress: true,
-        observe: "body"
-      }));
-      return res;
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
+  public async getSearchAnnouncements(dto: Partial<AnnouncementModel>): Promise<AnnouncementModel[]> {
+  try {
+    const res = await lastValueFrom(this.http.post<AnnouncementModel[]>(`${this.root}/announcements/filter`, dto, {
+      headers: this.headers,
+      reportProgress: true,
+      observe: "body"
+    }));
+    return res;
+  } catch (error) {
+    console.error(error);
+    return [];
   }
+}
   
 }
